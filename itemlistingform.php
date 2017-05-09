@@ -3,7 +3,7 @@
 		<title> Lucky Kiwi </title> 
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<?php
-		//IF THE USER IS NOT LOGGED IN THEN SEND THEM TO THE LOGIN FORM
+		//checks wether user is logged in - else redirect to the login page
 			session_start();
 			if(!isset( $_SESSION['Account'] )){
 				?>
