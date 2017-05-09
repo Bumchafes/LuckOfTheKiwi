@@ -19,6 +19,7 @@ if(!isset( $_SESSION['Account'] )){
 
 <body>
 	<?php
+		//check if the user have enough money to purchase the item
 		include 'dbFunctions.php';
 		$ownerID = $_POST['ownerID'];
 		$itemName = $_POST['itemName'];
@@ -28,7 +29,8 @@ if(!isset( $_SESSION['Account'] )){
 		}
 	?>
 <div>
-		<?php 
+	<?php 
+		//Display the message about purchase sucess or fail
 		if( isset($_POST['transaction'])){
 			if( $_POST['transaction']){
 				echo '<h3 style="color:green;">Purchase Complete</h3><br>';
@@ -36,21 +38,32 @@ if(!isset( $_SESSION['Account'] )){
 				echo '<h3 style="color:orange;">Purchase Incomplete : Something went wrong, please try again later.</h3><br>';
 			}
 		}
-		?>
-		
+	?>
+
+<?php
+	//Purchase form
+?>	
 <form class="inputs" action ="ticketprocess.php" method = "post"  >
-		<?php if( $max > 0 ){ ?>
+		<?php 
+			//Ask user to input the number of ticket they want to buy
+		if( $max > 0 ){ 
+				
+		?>
 		<p>How many tickets do you want to buy for this item.</p>
 		<p><label>Ticket: <input type="number" max="<?php echo $max;?>" min="0"	name="ticket"> Max:<?php echo $max;?></label></p>
 		<br>
 		<input type="hidden" name="ownerID" id="hiddenField" value="<?php echo $ownerID; ?>">
 		<input type="hidden" name="itemName" id="hiddenField" value="<?php echo $itemName; ?>">
 		<p><input class = "button buttonHover" type="submit" value="Submit"></p>
-		<?php }elseif( ItmGetTicketCount( $ownerID , $itemName ) == 0 ){
+		<?php 
+				
+		}elseif( ItmGetTicketCount( $ownerID , $itemName ) == 0 ){
 			echo '<p> All tickets are sold. The auction will be underway shortly. </p>';
 		}else{
 			echo '<p> You do not have enough money in your account to afford this item right now. </p>';
-		} ?>
+		} 
+	
+		?>
 </form>
 		<p><a class = "button buttonHover" href="index.php">Return Home Page </a></p>
 </div>
