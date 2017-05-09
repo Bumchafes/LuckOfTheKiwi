@@ -1,0 +1,212 @@
+
+/*BODY*/
+body{
+    background: linear-gradient(135deg, #0079bf, #026AA7);
+	font-family: Book Antiqua;
+}
+
+header{
+	font-family: praetoria;
+	padding-top: 10px;
+	padding-left: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+aside {
+	float:right;
+	padding: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+header , aside {
+	background-color: #CDD0FE;
+}
+
+/*HEADDERS*/
+
+h1{
+	color:#7fb2d1;
+    width: 100%;
+    text-align: center;
+    background: #005486;
+	border-radius: 5px;
+	margin-bottom: 1px
+}
+
+h3 {
+	margin: 0;
+	padding: 0;
+}
+
+h5 {
+	margin: 0;
+	margin-left: 10;
+	padding: 0;
+}
+
+/*PARAGRAPHS*/
+
+p {
+	margin: 0;
+	margin-left: 10px;
+	padding: 0;
+}
+
+p.aLogins{
+	margin: 0;
+	margin-left:0;
+	margin-top:0;
+	padding: 0;
+}
+
+/*TABLES*/
+
+table {
+	border-spacing: 0px;
+	border-collapse: collapse;
+	border-color: #0079bf;
+}
+
+table.listings{
+	width:100%;
+	min-width: 500px;
+}
+
+table.share {
+	width: 500px;
+}
+
+table.permission {
+	width: 550px;
+}
+
+th {
+	background-color: #0079bf;
+	color: white;
+}
+
+th.name{
+	width: 15%;
+}
+
+th.desc{
+	width: 65%;
+}
+
+.right{
+	border-right: 1px solid;
+	border-color: #0079bf;
+}
+
+.left{
+	border-left: 1px solid;
+	border-color: #0079bf;
+}
+
+.bottom{
+	border-bottom: 1px solid;
+	border-color: #0079bf;
+}
+
+td.center{
+	text-align:center;
+}
+
+tr:nth-child(even){
+	background-color: #7fb2d1;
+}
+
+tr:nth-child(even):hover{
+	background-color: #5699c2;
+}
+
+tr:nth-child(odd){
+	background-color: #b4d2e4;
+}
+
+tr:nth-child(odd):hover{
+	background-color: #a1c6dd;
+}
+
+/*INPUTS*/
+
+form.inputs {
+    border: 3px solid #7fb2d1;
+}
+
+input[type=text], input[type=password] {
+    
+    padding: 7px 10px;
+    margin: 8px 0;
+
+}
+
+.login {
+    padding: 20px;
+    background: lightBlue;
+}
+
+div {
+    padding: 20px;
+    background: lightBlue;
+}
+
+div.inputs{
+	border: 3px solid #7fb2d1;
+}
+
+div.balance{
+	float: right;
+	margin: 0px;
+	background:none;
+	border:none;
+	padding:none:
+}
+
+/*BUTTONS*/
+
+.button {
+    appearance: button;
+	border-radius: 2px 2px 2px 2px;
+	box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2),
+		0 2px 4px 0 rgba(0,0,0,0.19);
+	transition-duration: 0.4s;
+	display: inline-block;
+	padding: 5px 5px;
+
+    text-decoration: none;
+	background-color: #367196;
+	border: 1px solid;
+	border-color: #367196;
+    color: #7fb2d1;
+}
+
+.buttonHover:hover{
+	box-shadow: 0 6px 9px 0 rgba(0,0,0,0.2),
+		0 6px 12px 0 rgba(0,0,0,0.19);
+	transform: translateY(-4px);
+	background-color: #3d7fa9;
+	border-color: #3d7fa9;
+	color: #a1c6dd;
+	
+}
+
+.button:active{
+	transform: translateY(4px);
+	box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2),
+		0 2px 4px 0 rgba(0,0,0,0.19);
+	background-color: #367196;
+	border-color: #367196;
+	color: #7fb2d1;
+}
+
+
+input.button{
+	font-family: Book Antiqua;
+	font-size: 16;
+}
+
+
