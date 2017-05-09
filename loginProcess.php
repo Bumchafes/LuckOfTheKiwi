@@ -1,15 +1,13 @@
+<!--This file is used to process data submitted from 'loginform.php'
 <?php
-	
 	if(!isset($included)){
-		session_start();
-	
-		include 'dbFunctions.php';
-		
-		//retrieve input from "loginform"
+		session_start();		
+		include 'dbFunctions.php';		
+		//retrieve input from "loginform" to be used
 		$userName=$_POST["user_name"];
 		$pwd=$_POST["pswd"];
 	}
-	
+	//'loginProcess()' function hashes the password and verifies username against password
 	function loginProcess( $userName , $pwd ){
 		//Hashing password
 		$pwd=md5($pwd);
@@ -18,7 +16,8 @@
 			return 0;
 		}
 		else
-		{
+		{	
+			//update the session variable 'Account'
 			$_SESSION['Account'] = AccGetID( $userName );
 			return 1;
 		}
