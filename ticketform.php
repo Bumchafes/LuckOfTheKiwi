@@ -49,7 +49,7 @@ if(!isset( $_SESSION['Account'] )){
 	?>
 	
 		<p>How many tickets do you want to buy for this item.</p>
-		<p><label>Ticket: <input type="number" max="<?php echo $max;?>" min="0"	name="ticket"> Max:<?php echo $max;?></label></p>
+		<p><label>Ticket: <input type="number" max="<?php echo $max;?>" min="1"	name="ticket"> Max:<?php echo $max;?></label></p>
 		<br>
 		<input type="hidden" name="ownerID" id="hiddenField" value="<?php echo $ownerID; ?>">
 		<input type="hidden" name="itemName" id="hiddenField" value="<?php echo $itemName; ?>">
