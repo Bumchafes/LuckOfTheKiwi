@@ -1,5 +1,6 @@
 <html>
 <head>
+	<!--this is a basic login form that takes in a username and password.
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
