@@ -1,6 +1,5 @@
 <!--Process form for logging out of 'LuckyKiwi
 <?php
-	
 	if(!isset($included)){
 		$page = $_POST['page'];
 	}
@@ -14,13 +13,10 @@
 			return 0;
 		}else{
 			return 1;
-		}
-		
+		}	
 	}
-	
 	if(!isset($included)){
 		logoutProcess();
 		echo "<script>setTimeout(\"location.href = '".$page."';\",0);</script>";
 	}
-	
 ?>
