@@ -43,7 +43,7 @@ if(!isset( $_SESSION['Account'] )){
 	
 <form class="inputs" action ="ticketprocess.php" method = "post"  >
 	<?php 
-		//Ask user to input the number of ticket they want to buy
+		//Ask user to input the number of ticket they want to purchase
 		if( $max > 0 ){ 
 				
 	?>
