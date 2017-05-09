@@ -1,5 +1,6 @@
+<!--file used to process data submitted from 'registrationForm.php'
 <?php
-	
+    //retrieve variables from 'registrationForm.php' and save to local variables
     if(!isset($included)){
 		include 'dbFunctions.php';
 		echo '<link rel = "stylesheet" href = "style.css">';
@@ -16,28 +17,24 @@
 		//Change date into database date format.
 		$dob = "".$year."/".$month."/".$day;
     }
-	
+	//'registrationProcess()' compares passwords - if true, a new account is created for the user
 function registrationProcess( $username, $pwd, $confpwd, $fName, $lName, $email, $dob){
-	
 		if($pwd == $confpwd)
 		{	
-			$result = @AccCreateAccount($username, $fName, $lName, $dob, md5($pwd), $email );
-			
+			$result = @AccCreateAccount($username, $fName, $lName, $dob, md5($pwd), $email );	
 			if($result == 1){
 					return 1;
 			}else{
 					return 0;
 			}			
-		
 		}
 		else
 		{
 				return 2;
 		}
 }
-	
 	if(!isset($included)){
-	
+		//invokes registrationProcess() function passing in the user credentials
 		$R = registrationProcess( $username, $pwd, $confpwd, $fName, $lName, $email, $dob);
 	
 		if($R == 1){
@@ -49,6 +46,5 @@ function registrationProcess( $username, $pwd, $confpwd, $fName, $lName, $email,
 			echo '<p style="color:orange;">The Username is already in use</p>';
 			echo "<script>setTimeout(\"location.href = 'loginForm.php';\",2500);</script>";
 		}
-		
 	}
 ?>
