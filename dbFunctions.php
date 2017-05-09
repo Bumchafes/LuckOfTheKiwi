@@ -65,7 +65,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 				$query = 'SELECT a_ID FROM accounts WHERE a_Username = \''.$AccountID.'\' AND a_Password = \''.$HashedPswd.'\';';
 				$result = mysqli_query($connection, $query);
 				@mysql_close();
-				//echo $query;
+
 				if(!$result || !mysqli_num_rows($result)){
 					return 0; 
 				}else{ 
@@ -563,7 +563,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 				$query = 'SELECT i_Value FROM items WHERE a_ID = \''.$AccountID.'\' AND i_Name = \''.$ItemName.'\';';
 				$result = mysqli_query($connection, $query);
 				@mysql_close();
-				echo $query;
+
 				if(!$result){ 
 					return 0; 
 				}else{ 
@@ -590,7 +590,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 			$query = 'Call iUpdateValue(\''.$ItemID.'\',\''.$NewValue.'\',\''.$ItemName.'\');';
 			$result = mysqli_query($connection, $query);
 			@mysql_close();
-			echo $query;
+
 			if (!$result){
 				return 0;
 			}else{
