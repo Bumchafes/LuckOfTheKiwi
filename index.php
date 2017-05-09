@@ -31,7 +31,7 @@ if(!isset( $_SESSION['Account'] )){
 		$balance = AccGetBalance( $_SESSION['Account'] );
 		$items = GetItemSampleArray();
 		?>
-		<!--displays users balance
+		<!--displays users balance-->
 		<div class="balance">Account Balance : $<?php echo $balance ?></div>
 			<form action = "logoutProcess.php" method = "post">
 			<input type="hidden" name="page" id="hiddenField" value="index.php">
@@ -83,17 +83,24 @@ if(!isset( $_SESSION['Account'] )){
 							'</td>'.
 						'</tr>';		
 				}
+			}
 			?>
 		</table>
 		<br>
-		<form action = "searchItems.php" method = "post">
+		<form action = "searchProcess.php" method = "post">
 			<p>
 				<input class = "button buttonHover" type="submit" value="Search"> 
-				<input type="text/feild" name="query" id="hiddenField" value="'.$row['a_ID'].'">
+				<input type="text/field" name="searchList" id="hiddenField" >
 			</p>
 		</form>
 		<br>
-		<?php if( isset($searchResult) ){
+		<?php if( isset($_POST['searchResult']) ){
+			$searchResult = ($_POST['searchResult']);
+			if(!$searchResult){
+				include 'dbFunctions.php';
+				$query = "SELECT * FROM items WHERE MOD(a_ID,3) = 0 LIMIT 20;";
+				$searchResult = mysqli_query( dbConnect() , $query );
+			}
 			echo '<h3>Results</h3>'.
 			'<table class="listings bottom">'.
 			'<thead>'.
