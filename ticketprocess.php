@@ -2,7 +2,8 @@
 session_start();
 
 include 'dbFunctions.php';
-		
+
+//record the ticket purchase 
 $purchase = PurchaseTickets($_SESSION['Account'] , $_POST['ownerID'] , $_POST['itemName'] , $_POST['ticket']);
 
 echo '<form id="subReturn" action="ticketForm.php" method="POST">';
