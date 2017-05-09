@@ -5,7 +5,6 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 	<h1><i>TheLuckyKiwi</i></h1>
-
 <body>
 <br><br><br>
 	<div>
