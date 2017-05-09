@@ -22,16 +22,11 @@
 			return 1;
 		}
 	}
-	
 	if(!isset($included)){
 		if( loginProcess( $userName , $pwd ) ){
-		
 			echo "<script>setTimeout(\"location.href = 'index.php';\",0);</script>";
-		
 		}else{
-		
 			echo "<script>setTimeout(\"location.href = 'loginForm.php';\",1500);</script>";
 		}
 	}
-	
 ?>
