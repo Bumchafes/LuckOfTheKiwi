@@ -1,7 +1,7 @@
+<!--This form used to register a user-->
 <html>
 <head>
 	<title>Lucky Kiwi Registration</title>
-	
 	<link rel = "stylesheet" href = "style.css">
 </head>
 	<h1><i>TheLuckyKiwi</i></h1>
@@ -16,6 +16,7 @@
 	<p>First Name: <input required type='text' name='firstName'><br>
 	Last Name: <input required type='text' name='lastName'><br>
 	Email: <input required type='text' name='email'><br>
+	<!--drop table for user to select month-'date of birth-->			
 	DOB: <select required name="DOBMonth">
 		<option> - Month - </option>
 		<option value="01">January</option>
@@ -31,8 +32,7 @@
 		<option value="11">November</option>
 		<option value="12">December</option>
 	</select>
-
-
+	<!--drop table for user to select day-'date of birth'-->
 	<select name="DOBDay">
 		<option> - Day - </option>
 		<option value="01">1</option>
@@ -67,7 +67,7 @@
 		<option value="30">30</option>
 		<option value="31">31</option>
 	</select>
-
+	<!--drop table for user to select year - 'date of birth'-->
 	<select name="DOBYear">
 		<option> - Year - </option>
 		<option value="1999">1999</option>
@@ -123,7 +123,6 @@
 		<option value="1949">1949</option>
 		<option value="1948">1948</option>
 		<option value="1947">1947</option>
-	
 	</select>
 	</p>
 	<br>
