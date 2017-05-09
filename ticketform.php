@@ -19,7 +19,7 @@ if(!isset( $_SESSION['Account'] )){
 
 <body>
 	<?php
-		//check if the user have enough money to purchase the item
+		//check the maximum tickets for user to purchase according to their account balance
 		include 'dbFunctions.php';
 		$ownerID = $_POST['ownerID'];
 		$itemName = $_POST['itemName'];
@@ -40,9 +40,7 @@ if(!isset( $_SESSION['Account'] )){
 		}
 	?>
 
-<?php
-	//Purchase form
-?>	
+	
 <form class="inputs" action ="ticketprocess.php" method = "post"  >
 	<?php 
 		//Ask user to input the number of ticket they want to buy
