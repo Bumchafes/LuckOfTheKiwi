@@ -1,0 +1,109 @@
+//Create Account
+PROCEDURE `aCreateAccount`(IN `aUser` VARCHAR(20), IN `aFName` VARCHAR(20), IN `aLName` VARCHAR(30), IN `aDoB` DATE, 
+IN `aPass` VARCHAR(32), IN `aEmail` VARCHAR(60)) COMMENT 'Inserts values into accounts.' 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+INSERT INTO accounts ( a_Username , a_FirstName , a_LastName , a_DoB , a_Password, a_Email ) 
+VALUES ( aUser , aFName , aLName , aDoB , aPass , aEmail )
+
+//Update Balance
+PROCEDURE `aUpdateBalance`(IN `p_ID` INT(6), IN `p_Balance` DECIMAL(10,0)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+UPDATE accounts SET a_Balance = a_Balance + p_Balance WHERE p_ID = a_ID
+
+//Update First Name
+PROCEDURE `aUpdateFirstName`(IN `p_ID` INT(6), IN `p_firstname` VARCHAR(20)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+UPDATE accounts SET a_firstname = p_firstname WHERE a_ID = p_ID
+
+//Update Last Name
+PROCEDURE `aUpdateLastName`(IN `p_id` INT(6), IN `p_lastname` VARCHAR(30)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+update accounts set a_LastName = p_lastname where a_id = p_id
+
+//Update Password
+PROCEDURE `aUpdatePassword`(IN `p_ID` INT(6), IN `p_Password` VARCHAR(32)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+UPDATE accounts set a_Password = p_Password where a_ID = p_ID
+
+//Update Username
+PROCEDURE `aUpdateUsername`(IN `p_ID` INT(6), IN `p_Username` VARCHAR(20)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+update accounts set a_Username = p_Username where a_ID = p_ID
+
+//Get ID
+PROCEDURE `getID`(IN `p_Username` VARCHAR(20)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+SELECT a_ID from accounts WHERE a_Username = p_Username
+
+//Create Item
+PROCEDURE `iCreateItem`(IN `aID` INT(6), IN `iCity` VARCHAR(20), IN `iValue` DECIMAL(10,2), IN `iCost` DECIMAL(10,2), IN `iCount` INT(10), IN `iName` VARCHAR(20), IN `iDescription` VARCHAR(255), IN `p_tag` VARCHAR(20)) NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER BEGIN
+DECLARE delta int(6);
+DECLARE cond1 int(1) DEFAULT '1';
+DECLARE cond2 int(1) DEFAULT '1';
+DECLARE cond3 int(1) DEFAULT '1';
+INSERT INTO items ( i_Name , a_ID , i_Desc, i_City , i_Value , i_TicketCost , i_TicketCount ) VALUES ( iName , aID , iDescription, iCity , iValue , iCost , iCount );
+IF ISNULL(p_tag) OR (p_tag = '') THEN 
+SET cond1 = 0;
+END IF;
+IF (cond1 = 1) THEN
+SELECT tag_ID into delta FROM tags where tag_title = p_tag;
+SET cond2 = 0;
+END IF;
+IF ISNULL(delta) AND (cond2 = 0) THEN
+INSERT into tags (tag_title) VALUES (p_tag);
+SELECT tag_ID into delta FROM tags where tag_title = p_tag;
+SET cond3 = 0;
+END IF;
+
+//Buy Ticket
+PROCEDURE `itTicketBuy`(IN `p_buyerID` INT(6), IN `p_itemName` VARCHAR(20), IN `p_creatorID` INT(6), IN `p_amount` INT(10)) NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER BEGIN
+DECLARE CurrentBalance Decimal(10,2);
+DECLARE CostAmount Decimal(10,2);
+DECLARE TicketCount INT(10);
+SELECT a_Balance INTO CurrentBalance FROM accounts where a_ID = p_buyerID;
+SELECT i_TicketCost INTO CostAmount FROM items where i_Name = p_itemName AND a_ID = p_creatorID;
+SET CostAmount := (CostAmount * p_amount);
+SELECT i_TicketCount INTO TicketCount FROM items where i_Name = p_itemName AND a_ID = p_creatorID;
+IF (CostAmount <= CurrentBalance) AND (TicketCount >= p_amount) THEN 
+INSERT INTO item_tickets(it_creatorID,it_itemName,it_buyerID, it_amount) VALUES (p_creatorID, p_itemName, p_buyerID, p_amount);
+CALL aUpdateBalance(p_buyerID, -CostAmount);
+CALL iUpdateTicketCount( p_creatorID , -p_amount , p_itemName );
+END IF;
+
+//Update City
+PROCEDURE `iUpdateCity`(IN `p_ID` INT(6), IN `p_City` VARCHAR(20), IN `p_Name` VARCHAR(20)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+UPDATE items SET i_City = p_City WHERE a_ID = p_ID AND i_Name = p_Name
+
+//Update Description
+PROCEDURE `iUpdateDescription`(IN `p_Description` VARCHAR(255), IN `p_ID` INT(6), IN `p_Name` VARCHAR(20)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+UPDATE items SET i_Desc = p_Description WHERE a_ID = p_ID AND i_Name = p_Name
+
+//Update Ticket Cost
+PROCEDURE `iUpdateTicketCost`(IN `p_ID` INT(6), IN `p_TicketCost` DECIMAL(10,2), IN `p_Name` VARCHAR(20)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+update items set i_TicketCost = p_TicketCost WHERE a_ID = p_ID AND i_Name = p_Name
+
+//Update Ticket Count
+PROCEDURE `iUpdateTicketCount`(IN `p_ID` INT(6), IN `p_TicketCount` INT(10), IN `p_Name` VARCHAR(20)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+update items set i_TicketCount = i_TicketCount + p_TicketCount WHERE a_ID = p_ID AND i_Name = p_Name
+
+//Update Value
+PROCEDURE `iUpdateValue`(IN `p_ID` INT(6), IN `p_Value` DECIMAL(10,2), IN `p_Name` VARCHAR(20)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+update items set i_Value = p_Value WHERE a_ID = p_ID AND i_Name = p_Name
+
+//Create Tag
+PROCEDURE `tagCreateTag`(IN `new_tag` VARCHAR(20)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+INSERT INTO tags( tag_ID ) VALUES( new_tag )
+
+//Create Purchase
+PROCEDURE `tCreatePurchase`(IN `quantity` INT(6), IN `buyerID` INT(6), IN `creatorID` INT(6), IN `itemName` VARCHAR(20)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+INSERT INTO item_tickets( it_creatorID, it_itemName, it_buyerID, it_amount) VALUES( creatorID, itemName, buyerID, quantity)
+
+DROP INDEX( `a_FirstName`, `a_LastName`, `a_DoB`, `a_Balance`, `a_Password`, `a_Email`)
+
