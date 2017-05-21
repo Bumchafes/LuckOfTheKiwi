@@ -105,5 +105,25 @@ PROCEDURE `tCreatePurchase`(IN `quantity` INT(6), IN `buyerID` INT(6), IN `creat
 NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
 INSERT INTO item_tickets( it_creatorID, it_itemName, it_buyerID, it_amount) VALUES( creatorID, itemName, buyerID, quantity)
 
-DROP INDEX( `a_FirstName`, `a_LastName`, `a_DoB`, `a_Balance`, `a_Password`, `a_Email`)
-
+//Search Currently working on
+CREATE PROCEDURE `findItem`
+(IN `wordArray` VARCHAR(255)) 
+NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+BEGIN 
+SELECT * 
+FROM items 
+WHERE 
+FIND_IN_SET( i_Name, wordArray ) 
+OR 
+FIND_IN_SET( i_Desc, wordArray ) 
+OR 
+( a_ID IN (
+SELECT item_tags.a_ID 
+FROM item_tags 
+INNER JOIN tags ON item_tags.tag_ID = tags.tag_ID 
+WHERE tags.tag_Title IN wordArray
+) AND i_Name IN (
+SELECT item_tags.i_Name
+FROM item_tags 
+INNER JOIN tags ON item_tags.tag_ID = tags.tag_ID 
+WHERE tags.tag_Title IN wordArray) );
