@@ -127,3 +127,4 @@ SELECT item_tags.i_Name
 FROM item_tags 
 INNER JOIN tags ON item_tags.tag_ID = tags.tag_ID 
 WHERE tags.tag_Title IN wordArray) );
+http://stackoverflow.com/questions/44103536/phpmyadmin-procedure-sub-query-join
