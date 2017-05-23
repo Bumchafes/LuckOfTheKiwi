@@ -5,10 +5,10 @@
 		<?php
 		//checks wether user is logged in - else redirect to the login page
 			session_start();
-			if(!isset( $_SESSION['Account'] )){
-				?>
-					<META http-equiv="refresh" content="0;URL=loginForm.php">
-				<?php
+			if(!isset( $_SESSION['Account'] ))
+			{
+				
+				<META http-equiv="refresh" content="0;URL=loginForm.php">
 			}
 		?>
 	</head> 
