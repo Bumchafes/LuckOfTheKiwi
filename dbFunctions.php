@@ -845,4 +845,66 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 			return 0;
 		}
 	}
+
+
+/*================================================
+			PHOTO/IMAGE FUNCTIONS
+	================================================*/
+	
+	/*------------------------------------------------
+	INSERT PHOTOS FOR AN ITEM
+	------------------------------------------------*/
+
+function insertPhoto( $AccountID,$ItemName,$Photoname )
+	{
+		$connection = dbConnect();
+		
+		if( $connection )
+		{
+			$query = 'CALL insertPhoto( '$AccountID','$ItemName','$Photoname');';
+			$result = mysqli_query($connection, $query);
+			@mysql_close();
+			if( !$result )
+			{
+				return 0;
+			}
+			else
+			{
+				return $result;
+			}
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+/*------------------------------------------------
+	GET PHOTOS FOR ITEM
+	------------------------------------------------*/
+
+function getPhotos( $ItemName )
+	{
+		$connection = dbConnect();
+		
+		if( $connection )
+		{
+			$query = 'CALL getPhotos( '$ItemName');';
+			$result = mysqli_query($connection, $query);
+			@mysql_close();
+			if( !$result )
+			{
+				return 0;
+			}
+			else
+			{
+				return $row["ip_photoname"];
+			}
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
 ?>
