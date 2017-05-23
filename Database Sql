@@ -239,6 +239,75 @@ ELSE
 END IF;
 END
 
+//Get hot items
+DROP PROCEDURE `iHotItems`;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `iHotItems`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER SELECT *
+FROM items
+WHERE i_Sold = 0
+AND 
+(
+/**First get tickets with less than 10% unsold tickets.**/
+    CEIL(it_amount/10) >=
+    (
+        SELECT COUNT(*)
+        FROM item_tickets
+        WHERE it_creatorID = a_ID 
+ 		AND it_itemName = i_Name
+        AND it_buyerID = NULL
+  	)
+)OR(
+/**Second get tickets with less than 20% unsold tickets.**/
+    CEIL(it_amount/5) >=
+    (
+        SELECT COUNT(*)
+        FROM item_tickets
+        WHERE it_creatorID = a_ID 
+ 		AND it_itemName = i_Name
+        AND it_buyerID = NULL
+  	)
+)OR(
+/**Next get tickets with less than 30% unsold tickets.**/
+    CEIL(it_amount/4) >=
+    (
+        SELECT COUNT(*)
+        FROM item_tickets
+        WHERE it_creatorID = a_ID 
+ 		AND it_itemName = i_Name
+        AND it_buyerID = NULL
+  	)
+)OR(
+/**Next get tickets with less than 40% unsold tickets.**/
+    CEIL(it_amount/3) >=
+    (
+        SELECT COUNT(*)
+        FROM item_tickets
+        WHERE it_creatorID = a_ID 
+ 		AND it_itemName = i_Name
+        AND it_buyerID = NULL
+  	)
+)OR(
+/**Next get tickets with less than 50% unsold tickets.**/
+    CEIL(it_amount/2) >=
+    (
+        SELECT COUNT(*)
+        FROM item_tickets
+        WHERE it_creatorID = a_ID 
+ 		AND it_itemName = i_Name
+        AND it_buyerID = NULL
+  	)
+)OR(
+/**Lastly get tickets with any unsold tickets.**/
+    CEIL(it_amount/1) >=
+    (
+        SELECT COUNT(*)
+        FROM item_tickets
+        WHERE it_creatorID = a_ID 
+ 		AND it_itemName = i_Name
+        AND it_buyerID = NULL
+  	)
+)
+/**Limit the results to the first 20 selected.**/
+LIMIT 20
 
 
 
