@@ -36,8 +36,8 @@
 				<input type="radio" name="type" value= "Jewellery"> Jewellery</input>
 				<input type="radio" name="type" value= "Art"> Art</input>
 				<input type="radio" name="type" value= "Movies & TV"> Movies & TV</input>
-				<br>
-				<br>
+				<br></br>
+				Select image to upload:<input type="file" name="image" id="fileToUpload">
 				<input class = "button buttonHover" type="submit" value = "Submit"></input>
 				<input class = "button buttonHover" type="reset" value = "Reset"></input>
 				</br>
@@ -57,8 +57,11 @@
 				$name = $_POST["itemName"];
 				$desc = $_POST["Desc"];
 				$tag = $_POST["type"];
+				$photo = $_POST["image"];
+				
 				include 'dbFunctions.php';
 				ItmCreateItem($accID,$city,$value,$ticketcost,$ticketcount,$name,$desc,$tag);
+				insertPhoto($accID,$name,$photo);
 			}
 		?>
 	</body>
