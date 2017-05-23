@@ -654,7 +654,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 	}
 	
 	/*================================================
-			TICKET FUNCTIONS
+			TICKET MANAGEMENT
 	================================================*/
 	
 	/*------------------------------------------------
@@ -683,57 +683,60 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 			
 	}
 	
-	/*================================================
-			TICKET FUNCTIONS
-	================================================*/
-	
-	function GetItemSampleArray(){
-		
+	/*------------------------------------------------
+	CHOOSE WINNING TICKET : RETURN WINNER ID
+	------------------------------------------------*/
+	//The expected result should be an INT containing the winners account ID.
+	function chooseWinningTicket( $sellerID , $itemName )
+	{
 		$connection = dbConnect();
 		
-		if($connection){
-				//Todo.
-				$query = 'SELECT * FROM items WHERE i_TicketCount >= 0 LIMIT 6;';
-				$result = mysqli_query($connection, $query);
-				//echo $query;
-				@mysql_close();
-				if(!$result){ 
-					return 0; 
-				}else{ 
-					
-					return $result;
-
-				}
-				
-			}else{
+		if( $connection )
+		{
+			$query = 'CALL tiGetWinner(\''.$itemName.'\',\''.$sellerID.'\');';
+			$result = mysqli_query( $connection, $query );
+			@mysql_close();
+			if( !$result )
+			{
 				return 0;
 			}
+			else
+			{
+				return $result;
+			}
+		}
+		else
+		{
+			return 0;
+		}
 	}
 	
-	function GetTagsSampleArray(){
-		
+	/*------------------------------------------------
+	GET HOT ITEMS
+	------------------------------------------------*/
+	function getHotItems()
+	{
 		$connection = dbConnect();
 		
-		if($connection){
-				//Todo.
-				$query = 'SELECT * FROM item_tags WHERE tag_ID >= 0 LIMIT 6;';
-				$result = mysqli_query($connection, $query);
-				//echo $query;
-				@mysql_close();
-				if(!$result){ 
-					return 0; 
-				}else{ 
-					
-					return $result;
-
-				}
-				
-			}else{
+		if( $connection )
+		{
+			$query = 'CALL iHotItems();';
+			$result = mysqli_query( $connection, $query );
+			@mysql_close();
+			if( !$result )
+			{
 				return 0;
 			}
+			else
+			{
+				return $result;
+			}
+		}
+		else
+		{
+			return 0;
+		}
 	}
-
-
 
 	/*================================================
 			FEEDBACK FUNCTIONS
@@ -847,7 +850,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 	}
 
 
-/*================================================
+	/*================================================
 			PHOTO/IMAGE FUNCTIONS
 	================================================*/
 	
@@ -855,7 +858,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 	INSERT PHOTOS FOR AN ITEM
 	------------------------------------------------*/
 
-function insertPhoto( $AccountID,$ItemName,$Photoname )
+	function insertPhoto( $AccountID,$ItemName,$Photoname )
 	{
 		$connection = dbConnect();
 		
@@ -879,11 +882,11 @@ function insertPhoto( $AccountID,$ItemName,$Photoname )
 		}
 	}
 
-/*------------------------------------------------
+	/*------------------------------------------------
 	GET PHOTOS FOR ITEM
 	------------------------------------------------*/
 
-function getPhotos( $ItemName )
+	function getPhotos( $ItemName )
 	{
 		$connection = dbConnect();
 		
