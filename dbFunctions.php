@@ -744,13 +744,13 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 	------------------------------------------------*/
 
 
-	function FbGiveFeedback($RecieverID, $GiverID, $FeedbackDesc, $FeedbackRating){
+	function FbGiveFeedback($ReceiverID, $GiverID, $FeedbackDesc, $FeedbackRating){
 		
 		$connection = dbConnect();
 		
 		if($connection){
 				
-				$query = 'CALL fbInsertFeedback(\''.$RecieverID.'\', \''.$GiverID.'\', \''.$FeedbackDesc.'\', \''.$FeedBackRating.'\');';
+				$query = 'CALL fbInsertFeedback(\''.$ReceiverID.'\', \''.$GiverID.'\', \''.$FeedbackDesc.'\', \''.$FeedBackRating.'\');';
 				$result = mysqli_query($connection, $query);
 				@mysql_close();
 				if(!$result){ 
