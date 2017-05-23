@@ -148,6 +148,7 @@ FOR EACH ROW
   WHERE it_itemName = OLD.i_NAME 
   AND it_creatorID = OLD.a_ID
   
+ 
 //ITEM TICKETS TRIGGERS
 //whenDeleted
 TRIGGER `whenDeleted` 
@@ -170,6 +171,29 @@ IF( OLD.it_SaleID != NEW.it_SaleID AND NEW.it_SaleID = 1 ) THEN
   UPDATE accounts 
   SET a_Balance = a_Balance + it_amount 
   WHERE a_ID = it_creatorID; 
+END IF
+
+//whenReturned
+CREATE TRIGGER `whenReturned` 
+AFTER UPDATE ON `item_tickets` 
+FOR EACH ROW 
+/**When the buyerID is updated to null, transfer funds back into balance.**/ 
+IF( OLD.it_buyerID != NEW.it_buyerID AND NEW.it_buyerID = NULL ) 
+THEN 
+UPDATE accounts 
+SET a_Balance = a_Balance + it_amount, a_Pending = a_Pending - it_amount 
+WHERE a_ID = OLD.it_buyerID; 
+END IF;
+
+//whenClaimed
+TRIGGER `whenClaimed` 
+AFTER UPDATE ON `item_tickets` 
+FOR EACH ROW
+/**When the buyerID is updated, transfer the funds into pending.**/ 
+IF( OLD.it_buyerID != NEW.it_buyerID AND NEW.it_buyerID != NULL) 
+THEN UPDATE accounts 
+SET a_Balance = a_Balance - it_amount, a_Pending = a_Pending + it_amount 
+WHERE a_ID = it_buyerID; 
 END IF
 
 //getWinner Procedure to retrive the winner.
