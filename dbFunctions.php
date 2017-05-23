@@ -733,4 +733,85 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 			}
 	}
 
+
+
+/*================================================
+					FEEDBACK FUNCTIONS
+	================================================*/
+	
+	/*------------------------------------------------
+	GIVE FEEDBACK
+	------------------------------------------------*/
+
+
+function FbGiveFeedback($RecieverID, $GiverID, $FeedbackDesc, $FeedbackRating){
+		
+		$connection = dbConnect();
+		
+		if($connection){
+				
+				$query = 'CALL fbInsertFeedback('$RecieverID', '$GiverID', '$FeedbackDesc', '$FeedBackRating')';
+				$result = mysqli_query($connection, $query);
+				@mysql_close();
+				if(!$result){ 
+					return 0; 
+				}else{ 
+					return 1;
+				}
+				
+			}else{
+				return 0;
+			}
+	}
+
+/*------------------------------------------------
+	GET FEEDBACK FOR ACCOUNT
+	------------------------------------------------*/
+function FbGiveFeedback($AccountID){
+		
+		$connection = dbConnect();
+		
+		if($connection){
+				
+				$query = 'CALL fbFeedbackSearch('$AccountID')';
+				$result = mysqli_query($connection, $query);
+				@mysql_close();
+				if(!$result){ 
+					return 0; 
+				}else{ 
+					if( $row = mysqli_fetch_assoc($result) ){
+						
+						return $row["i_Desc"];
+						
+					}
+				}
+				
+			}else{
+				return 0;
+			}
+	}
+
+/*------------------------------------------------
+	GET AVERAGE RATING FOR ACCOUNT
+	------------------------------------------------*/
+function FbGiveFeedback($AccountID){
+		
+		$connection = dbConnect();
+		
+		if($connection){
+				
+				$query = 'CALL fbAverage('$AccountID')';
+				$result = mysqli_query($connection, $query);
+				@mysql_close();
+				if(!$result){ 
+					return 0; 
+				}else{ 
+					return $result;
+				}
+				
+			}else{
+				return 0;
+			}
+	}
+
 ?>
