@@ -16,14 +16,33 @@
 	<br><textarea required name="feedback" rows="10" cols="40"></textarea> 
 	</p>
 	
-	<p>
-	<label>Rating(Minimum - <b style="color:Red;">1 Star</b> ~ Maximum - <b style="color:green;">5 Star</b>): <br>
-	<input type= "radio" name = "rating" value = "Never going to deal with this seller again" >Never going to deal with this seller again - <b style="color:Red;">1 Star</b></label>
-	<br><label><input type= "radio" name = "rating" value = "Prefer not to deal with this seller again">Prefer not to deal with this seller again - <b style="color:orange;">2 Star</b></label>
-	<br><label><input type= "radio" name = "rating" value = "It's okay to deal with this seller again">It's okay to deal with this seller again - <b>3 Star</b></label>
-	<br><label><input type= "radio" name = "rating" value = "Prefer to deal with this seller again">Prefer to deal with this seller again - <b style="color:Lightgreen;">4 Star</b></label>
-	<br><label><input type= "radio" name = "rating" value = "Always want to deal with this seller">Always want to deal with this seller - <b style="color:Green;">5 Star</b></label>
-	</p>
+	<div class="stars">
+
+	  <form action="">
+
+	    <input class="star star-5" id="star-5" type="radio" name="star"/>
+
+	    <label class="star star-5" for="star-5"></label>
+
+	    <input class="star star-4" id="star-4" type="radio" name="star"/>
+
+	    <label class="star star-4" for="star-4"></label>
+
+	    <input class="star star-3" id="star-3" type="radio" name="star"/>
+
+	    <label class="star star-3" for="star-3"></label>
+
+	    <input class="star star-2" id="star-2" type="radio" name="star"/>
+
+	    <label class="star star-2" for="star-2"></label>
+
+	    <input class="star star-1" id="star-1" type="radio" name="star"/>
+
+	    <label class="star star-1" for="star-1"></label>
+
+	  </form>
+
+	</div>
 		
 	<p><button type="submit" value="submit">submit</button>
 	<button type="reset" value="Reset">Reset</button></p>
