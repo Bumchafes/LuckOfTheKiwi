@@ -116,3 +116,84 @@ OR ( FIND_IN_SET( a_ID, ( SELECT item_tags.a_ID FROM item_tags LEFT JOIN tags ON
   AND FIND_IN_SET( i_Name, ( SELECT item_tags.i_Name FROM item_tags LEFT JOIN tags ON item_tags.tag_ID = tags.tag_ID WHERE FIND_IN_SET( tags.tag_Title, wordArray) ) ) ); 
 END
 
+//ITEM TABLE TRIGGERS
+//createTickets
+TRIGGER `createTickets` 
+AFTER INSERT ON `items` 
+FOR EACH ROW 
+BEGIN 
+DECLARE iVar INT DEFAULT 1; 
+WHILE( iVar <= NEW.i_TicketCount ) DO 
+  SET iVar = iVar + 1; 
+  INSERT INTO item_tickets ( it_creatorID , it_itemName , it_amount ) 
+  VALUES ( NEW.a_ID , NEW.i_Name , NEW.i_TicketCost ); 
+END WHILE; 
+END
+
+//itemSold
+TRIGGER `itemSold` 
+AFTER UPDATE ON `items` 
+FOR EACH ROW 
+IF ( NEW.i_Sold = 1 ) THEN 
+  UPDATE item_tickets SET it_Drawn = 1 
+  WHERE it_itemName = items.i_Name 
+  AND it_creatorID = items.a_ID; 
+END IF
+
+//itemRemoved
+TRIGGER `itemRemoved` 
+AFTER DELETE ON `items` 
+FOR EACH ROW 
+  DELETE FROM item_tickets 
+  WHERE it_itemName = OLD.i_NAME 
+  AND it_creatorID = OLD.a_ID
+  
+//ITEM TICKETS TRIGGERS
+//whenDeleted
+TRIGGER `whenDeleted` 
+AFTER DELETE ON `item_tickets` 
+FOR EACH ROW 
+IF ( OLD.it_SaleID = 0 ) THEN 
+  UPDATE accounts 
+  SET a_Balance = a_Balance + OLD.it_amount, a_Pending = a_Pending - OLD.it_amount 
+  WHERE a_ID = OLD.it_buyerID; 
+END IF
+
+//whenSold
+TRIGGER `whenSold` 
+AFTER UPDATE ON `item_tickets` 
+FOR EACH ROW 
+IF( OLD.it_SaleID != NEW.it_SaleID AND NEW.it_SaleID = 1 ) THEN 
+  UPDATE accounts 
+  SET a_Pending = a_Pending - it_amount 
+  WHERE a_ID = it_buyerID; 
+  UPDATE accounts 
+  SET a_Balance = a_Balance + it_amount 
+  WHERE a_ID = it_creatorID; 
+END IF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
