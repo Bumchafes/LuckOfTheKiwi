@@ -1,7 +1,7 @@
 <?php
 
 	/*================================================
-						CONNECTION
+			CONNECTION
 	================================================*/
 	
 	/*------------------------------------------------
@@ -22,7 +22,7 @@ function dbConnect(){
 }
 	
 	/*================================================
-					ACCOUNT FUNCTIONS
+			ACCOUNT FUNCTIONS
 	================================================*/
 	
 	/*------------------------------------------------
@@ -370,7 +370,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 	}
 	
 	/*================================================
-					ITEM FUNCTIONS
+			ITEM FUNCTIONS
 	================================================*/
 	
 	/*------------------------------------------------
@@ -654,7 +654,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 	}
 	
 	/*================================================
-					TICKET FUNCTIONS
+			TICKET FUNCTIONS
 	================================================*/
 	
 	/*------------------------------------------------
@@ -684,7 +684,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 	}
 	
 	/*================================================
-					TICKET FUNCTIONS
+			TICKET FUNCTIONS
 	================================================*/
 	
 	function GetItemSampleArray(){
@@ -735,8 +735,8 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 
 
 
-/*================================================
-					FEEDBACK FUNCTIONS
+	/*================================================
+			FEEDBACK FUNCTIONS
 	================================================*/
 	
 	/*------------------------------------------------
@@ -744,13 +744,13 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 	------------------------------------------------*/
 
 
-function FbGiveFeedback($RecieverID, $GiverID, $FeedbackDesc, $FeedbackRating){
+	function FbGiveFeedback($RecieverID, $GiverID, $FeedbackDesc, $FeedbackRating){
 		
 		$connection = dbConnect();
 		
 		if($connection){
 				
-				$query = 'CALL fbInsertFeedback('$RecieverID', '$GiverID', '$FeedbackDesc', '$FeedBackRating')';
+				$query = 'CALL fbInsertFeedback(\''.$RecieverID.'\', \''.$GiverID.'\', \''.$FeedbackDesc.'\', \''.$FeedBackRating.'\');';
 				$result = mysqli_query($connection, $query);
 				@mysql_close();
 				if(!$result){ 
@@ -764,16 +764,16 @@ function FbGiveFeedback($RecieverID, $GiverID, $FeedbackDesc, $FeedbackRating){
 			}
 	}
 
-/*------------------------------------------------
+	/*------------------------------------------------
 	GET FEEDBACK FOR ACCOUNT
 	------------------------------------------------*/
-function FbGiveFeedback($AccountID){
+	function FbGiveFeedback($AccountID){
 		
 		$connection = dbConnect();
 		
 		if($connection){
 				
-				$query = 'CALL fbFeedbackSearch('$AccountID')';
+				$query = 'CALL fbFeedbackSearch(\''.$AccountID'\');';
 				$result = mysqli_query($connection, $query);
 				@mysql_close();
 				if(!$result){ 
@@ -791,16 +791,16 @@ function FbGiveFeedback($AccountID){
 			}
 	}
 
-/*------------------------------------------------
+	/*------------------------------------------------
 	GET AVERAGE RATING FOR ACCOUNT
 	------------------------------------------------*/
-function FbGiveFeedback($AccountID){
+	function FbGiveFeedback($AccountID){
 		
 		$connection = dbConnect();
 		
 		if($connection){
 				
-				$query = 'CALL fbAverage('$AccountID')';
+				$query = 'CALL fbAverage(\''.$AccountID.'\');';
 				$result = mysqli_query($connection, $query);
 				@mysql_close();
 				if(!$result){ 
@@ -814,4 +814,35 @@ function FbGiveFeedback($AccountID){
 			}
 	}
 
+	/*================================================
+			SEARCH FUNCTIONS
+	================================================*/
+	
+	/*------------------------------------------------
+	SEARCH ITEMS
+	------------------------------------------------*/
+
+	function searchItem( $wordList )
+	{
+		$connection = dbConnect();
+		
+		if( $connection )
+		{
+			$query = 'CALL findItem(\''.$wordList.'\');';
+			$result = mysqli_query($connection, $query);
+			@mysql_close();
+			if( !$result )
+			{
+				return 0;
+			}
+			else
+			{
+				return $result;
+			}
+		}
+		else
+		{
+			return 0;
+		}
+	}
 ?>
