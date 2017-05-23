@@ -173,52 +173,46 @@ IF( OLD.it_SaleID != NEW.it_SaleID AND NEW.it_SaleID = 1 ) THEN
 END IF
 
 //getWinner Procedure to retrive the winner.
-PROCEDURE `getWinner`(IN `itemOwner` INT(6), IN `itemName` VARCHAR(20)) 
-NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN
-DECLARE win INT DEFAULT 0;
+FUNCTION `tiGetWinner`(`p_OwnID` INT(6), `p_ItemName` VARCHAR(20)) 
+RETURNS INT NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+BEGIN
 DECLARE random INT DEFAULT 0;
-DECLARE mini INT DEFAULT 0;
-DECLARE maxi INT DEFAULT 0;
-DECLARE temp INT DEFAULT 0;
 DECLARE total INT DEFAULT 0;
-DECLARE num INT DEFAULT 0;
-SELECT COUNT(*) 
-	INTO total 
-    FROM item_tickets 
-    WHERE it_creatorID = itemOwner 
-    AND it_itemName = itemName;
-SELECT it_SaleID 
-	INTO maxi,mini 
-    FROM item_tickets 
-    WHERE it_creatorID = itemOwner 
-    AND it_itemName = itemName;
-WHILE( num < total )DO
-	SELECT it_SaleID 
-    	INTO temp 
-        FROM item_tickets
-        WHERE it_creatorID = itemOwner 
-    	AND it_itemName = itemName;
-    IF( temp < mini )THEN
-    	SET mini = temp;
-    ELSEIF( temp > maxi )THEN
-    	SET maxi = temp;
-    END IF;
-    SET num = num + 1;
-END WHILE;
-WHILE( win = 0 )DO
-	SELECT FLOOR( mini + ( RAND() * ( maxi - mini + 1 ) )) into random;
-    IF( ( SELECT COUNT(*) 
-    	FROM item_tickets
-     	WHERE it_creatorID = itemOwner 
-    	AND it_itemName = itemName
-        AND it_SaleID = rand ) = 1 )
-    THEN
-        UPDATE item_tickets
-        	SET it_Winner = 1
-        	WHERE it_SaleID = random;
-    		SET win = win + 1;
-    END IF;
-END WHILE;
+DECLARE winner INT DEFAULT 0;
+/**If the count of tickets sold is equal to the number allocated.**/
+IF( (SELECT COUNT(*)
+     FROM item_tickets
+     WHERE it_itemName = p_ItemName
+     AND it_creatorID = p_OwnID
+     AND it_buyerID != NULL)
+   = (SELECT i_TicketCount
+      FROM items
+      WHERE it_itemName = p_ItemName
+      AND it_creatorID = p_OwnID)
+)THEN
+/**Set the total number of allocated tickets.**/
+    SET total = (SELECT i_TicketCount
+      FROM items
+      WHERE it_itemName = p_ItemName
+      AND it_creatorID = p_OwnID);
+/**Get a random number in the range of tickets.**/
+    SET random = (SELECT FLOOR(RAND() * (total+1)) );
+/**Select the nth ticket as the winner.**/
+    SET winner = (SELECT buyerID
+      FROM item_tickets
+      WHERE it_itemName = p_ItemName
+      AND it_creatorID = p_OwnID);
+/**Update the item to record its winner.**/
+    UPDATE items
+   		SET i_Winner = winner,
+        	i_Sold = 1
+        WHERE i_Name = p_ItemName
+      	AND a_ID = p_OwnID;
+/**Returns the winner, which is why its a function.**/
+    RETURN winner;
+ELSE
+	RETURN 0;
+END IF;
 END
 
 
