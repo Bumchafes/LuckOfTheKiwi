@@ -10,16 +10,21 @@
 	<div class = "feedback">
 	<form action = "feedbackprocess.php" method = "post">
 	
-
-	<p><label><b>UserName: </b></label><input required type="text" name="user_name"></p>
-	
-	<p><label><b>UserEmail: </b></label><input required type="text" name="email"></p>
-	
 	<p>
 	<label><b>Comments/feedbacks: </b></label>
-	<br><textarea required name="comments" rows="10" cols="40"></textarea> 
+	<?php //The feedback box for user to input their comments/feedback ?>
+	<br><textarea required name="feedback" rows="10" cols="40"></textarea> 
 	</p>
 	
+	<p>
+	<label>Rating: <br>
+	<input type= "radio" name = "share" value = "Never going to deal with this seller again" >Never going to deal with this seller again</label>
+	<br><label><input type= "radio" name = "share" value = "Prefer not to deal with this seller again">Prefer not to deal with this seller again</label>
+	<br><label><input type= "radio" name = "share" value = "It's okay to deal with this seller again">It's okay to deal with this seller again</label>
+	<br><label><input type= "radio" name = "share" value = "Prefer to deal with this seller again">Prefer to deal with this seller again</label>
+	<br><label><input type= "radio" name = "share" value = "Always want to deal with this seller again">Always want to deal with this seller again</label>
+	</p>
+		
 	<p><button type="submit" value="submit">submit</button>
 	<button type="reset" value="Reset">Reset</button></p>
 
