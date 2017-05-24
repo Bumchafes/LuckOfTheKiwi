@@ -29,7 +29,7 @@ if(!isset( $_SESSION['Account'] )){
 	    //includes page that holds database functions to be called
 		include 'dbFunctions.php';
 		$balance = AccGetBalance( $_SESSION['Account'] );
-		$items = GetItemSampleArray();
+		$items = getHotItems();
 		?>
 		<!--displays users balance-->
 		<div class="balance">Account Balance : $<?php echo $balance ?></div>
