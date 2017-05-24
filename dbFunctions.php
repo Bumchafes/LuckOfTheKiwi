@@ -776,7 +776,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 	GIVE FEEDBACK
 	------------------------------------------------*/
 
-
+	/*
 	function FbGiveFeedback($ReceiverID, $GiverID, $FeedbackDesc, $FeedbackRating){
 		
 		$connection = dbConnect();
@@ -795,12 +795,12 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 			}else{
 				return 0;
 			}
-	}
+	}*/
 
 	/*------------------------------------------------
 	GET FEEDBACK FOR ACCOUNT
 	------------------------------------------------*/
-	function FbGiveFeedback($AccountID){
+	function FbGetFeedback($AccountID){
 		
 		$connection = dbConnect();
 		
