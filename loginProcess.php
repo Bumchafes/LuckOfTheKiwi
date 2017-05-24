@@ -1,5 +1,5 @@
-<!--This file is used to process data submitted from 'loginform.php'
 <?php
+//This file is used to process data submitted from 'loginform.php'
 	if(!isset($included)){
 		session_start();		
 		include 'dbFunctions.php';		
