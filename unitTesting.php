@@ -531,6 +531,109 @@ if($unitTest == 1 AND $included == 1){
 }
 $unitTest = 0;
 
+//===============================
+//GET HOT ITEMS
+
+echo '<p>Get hot items</p>';
+
+if($included == 1){
+	$unitTest = getHotItems();
+}
+if($unitTest == 1 AND $included == 1){
+	echo '<p style="color:red;">Pass</p><br>';
+}else{
+	echo '<p style="color:green;">Fail</p><br>';
+}
+$unitTest = 0;
+
+
+/*================================================
+			FEEDBACK FUNCTIONS
+	================================================*/
+//GET FEEDBACK FOR ACCOUNT
+
+echo '<p>Get feedback for account</p>';
+
+if($included == 1){
+	$unitTest = FbGetFeedback('Alpha');
+}
+if($unitTest == 1 AND $included == 1){
+	echo '<p style="color:red;">Pass</p><br>';
+}else{
+	echo '<p style="color:green;">Fail</p><br>';
+}
+$unitTest = 0;
+
+//GET AVERAGE RATING FOR ACCOUNT
+
+echo '<p>Get average rating for account</p>';
+
+if($included == 1){
+	$unitTest = FbGiveFeedback('Alpha');
+}
+if($unitTest == 1 AND $included == 1){
+	echo '<p style="color:red;">Pass</p><br>';
+}else{
+	echo '<p style="color:green;">Fail</p><br>';
+}
+$unitTest = 0;
+
+
+//===============================
+//SEARCH ITEMS
+
+echo '<p>Search items</p>';
+
+if($included == 1){
+	$unitTest = searchItem( 'Chicken' );
+}
+if($unitTest == 1 AND $included == 1){
+	echo '<p style="color:red;">Pass</p><br>';
+}else{
+	echo '<p style="color:green;">Fail</p><br>';
+}
+$unitTest = 0;
+
+
+
+
+/*================================================
+			PHOTO/IMAGE FUNCTIONS
+	================================================*/
+//INSERT PHOTOS FOR AN ITEM
+
+echo '<p>Insert photos for an item</p>';
+
+if($included == 1){
+	$unitTest = insertPhoto('Alpha','Chicken','Chicken.jpg');
+}
+if($unitTest == 1 AND $included == 1){
+	echo '<p style="color:red;">Pass</p><br>';
+}else{
+	echo '<p style="color:green;">Fail</p><br>';
+}
+$unitTest = 0;
+
+//GET PHOTOS FOR ITEM
+
+echo '<p>Get photos for an item</p>';
+
+if($included == 1){
+	/*I think for GetPhotos, it also need to have AccountID too 
+	because with out the AccountID it can be messed up the photos
+	when there is two same item name item but with two different AccountID
+	PS: I didn't did any change on the actual function 
+	so notice to change it too if any of you are going to change it
+	otherwise just delete the AccountID 'Alpha' below as well as this comment*/
+	
+	$unitTest = GetPhotos('Chicken','Alpha');
+}
+if($unitTest == 1 AND $included == 1){
+	echo '<p style="color:red;">Pass</p><br>';
+}else{
+	echo '<p style="color:green;">Fail</p><br>';
+}
+$unitTest = 0;
 
 ?>
 <p><a href="index.php">Return Home Page </a></p>	
