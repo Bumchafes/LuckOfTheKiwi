@@ -368,6 +368,36 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 			}
 			
 	}
+
+	/*------------------------------------------------
+	BALANCE
+	------------------------------------------------*/
+	//GET
+	function AccGetPending($AccountID){
+		
+		$connection = dbConnect();
+		
+		if($connection){
+				
+				$query = 'SELECT a_Pending FROM accounts WHERE a_ID = \''.$AccountID.'\';';
+				$result = mysqli_query($connection, $query);
+				@mysql_close();
+				if(!$result){ 
+					return 0; 
+				}else{ 
+					if( $row = mysqli_fetch_assoc($result) ){
+						
+						return $row["a_Balance"];
+						
+					}
+				
+				}
+				
+			}else{
+				return 0;
+			}
+		
+	}
 	
 	/*================================================
 			ITEM FUNCTIONS
