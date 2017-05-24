@@ -619,12 +619,12 @@ $unitTest = 0;
 echo '<p>Get photos for an item</p>';
 
 if($included == 1){
-	/*I think for GetPhotos, it also need to have AccountID too 
-	because with out the AccountID it can be messed up the photos
-	when there is two same item name item but with two different AccountID
-	PS: I didn't did any change on the actual function 
-	so notice to change it too if any of you are going to change it
-	otherwise just delete the AccountID 'Alpha' below as well as this comment*/
+/*I think for GetPhotos, it also need to have AccountID too 
+because with out the AccountID it can be messed up the photos
+when there is two same item name item but with two different AccountID
+PS: I didn't did any change on the actual function 
+so notice to change it too if any of you are going to change it
+otherwise just delete the AccountID 'Alpha' below as well as this comment*/
 	
 	$unitTest = GetPhotos('Chicken','Alpha');
 }
