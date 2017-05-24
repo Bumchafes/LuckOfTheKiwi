@@ -922,7 +922,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 		
 		if( $connection )
 		{
-			$query = 'CALL getPhotos( \''.$ItemName.'\');';
+			$query = 'CALL getPhotos(\''.$ItemName.'\');';
 			$result = mysqli_query($connection, $query);
 			@mysql_close();
 			if( !$result )
