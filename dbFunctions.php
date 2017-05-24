@@ -697,7 +697,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 		
 			if($connection){
 				//Todo.
-				$query = 'CALL itTicketBuy(\''.$buyersID.'\',\''.$itemName.'\',\''.$sellerID.'\',\''.$quantity.'\');';
+				$query = 'CALL itBuyTicket(\''.$buyersID.'\',\''.$itemName.'\',\''.$sellerID.'\',\''.$quantity.'\');';
 				$result = mysqli_query($connection, $query);
 				echo $query;
 				@mysql_close();
