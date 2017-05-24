@@ -4,12 +4,12 @@ if(!isset( $_SESSION['Account'] )){
 	echo '<META http-equiv="refresh" content="0;URL=loginForm.php">';
 }
 ?> 
-
+<html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Ticket</title> 
 	<link rel="stylesheet" type="text/css" href="style.css" />
-<head>
+</head>
 	<h1><i>TheLuckyKiwi</i></h1>
 	<form action = "logoutProcess.php" method = "post">
 		<input type="hidden" name="page" id="hiddenField" value="index.php">
@@ -49,7 +49,7 @@ if(!isset( $_SESSION['Account'] )){
 	?>
 	
 		<p>How many tickets do you want to buy for this item.</p>
-		<p><label>Ticket: <input type="number" max="<?php echo $max;?>" min="1"	name="ticket"> Max:<?php echo $max;?></label></p>
+		<p><label>Ticket: <input type="text" max="<?php echo $max;?>" min="1"	name="ticket"> Max:<?php echo $max;?></label></p>
 		<br>
 		<input type="hidden" name="ownerID" id="hiddenField" value="<?php echo $ownerID; ?>">
 		<input type="hidden" name="itemName" id="hiddenField" value="<?php echo $itemName; ?>">
@@ -69,3 +69,4 @@ if(!isset( $_SESSION['Account'] )){
 </div>
 
 </body>
+</html>
