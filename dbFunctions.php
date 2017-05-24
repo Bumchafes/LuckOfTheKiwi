@@ -806,7 +806,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 		
 		if($connection){
 				
-				$query = 'CALL fbFeedbackSearch(\''.$AccountID'\');';
+				$query = 'CALL fbFeedbackSearch(\''.$AccountID.'\');';
 				$result = mysqli_query($connection, $query);
 				@mysql_close();
 				if(!$result){ 
