@@ -7,8 +7,9 @@
 			session_start();
 			if(!isset( $_SESSION['Account'] ))
 			{
-				
+				?>
 				<META http-equiv="refresh" content="0;URL=loginForm.php">
+					<?php
 			}
 		?>
 	</head> 
