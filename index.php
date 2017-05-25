@@ -32,7 +32,8 @@ if(!isset( $_SESSION['Account'] )){
 		$items = getHotItems();
 		?>
 		<!--displays users balance-->
-		<div class="balance">Account Balance : $<?php echo $balance ?></div>
+		<div class="balance" style="text-align:left;padding-left:0px;margin-left:1px;"><?php echo $balance ?><br><?phpecho $pending?></div>
+		<div class="balance" style="text-align:right;padding-right:0px;margin-right:1px;">Account Balance : $<br>Pending Transactions: $</div>
 			<form action = "logoutProcess.php" method = "post">
 			<input type="hidden" name="page" id="hiddenField" value="index.php">
 			<p class="aLogins"><input class = "button buttonHover" type="submit" value="Logout"></p>
@@ -71,7 +72,7 @@ if(!isset( $_SESSION['Account'] )){
 							'</td><td class="right">'.
 								$row['i_Desc'].
 							'</td><td class="right center">'.
-								$row['i_TicketCount'].
+								$row['i_TicketRemain'].'/'.$row['i_TicketCount'].
 							'</td><td class="right center">$'.
 								$row['i_TicketCost'].
 							'</td><td class="center right">'.
@@ -97,7 +98,6 @@ if(!isset( $_SESSION['Account'] )){
 		<?php if( isset($_POST['searchResult']) ){
 			$searchResult = ($_POST['searchResult']);
 			if(!$searchResult){
-				include 'dbFunctions.php';
 				$query = "SELECT * FROM items WHERE MOD(a_ID,3) = 0 LIMIT 20;";
 				$searchResult = mysqli_query( dbConnect() , $query );
 			}
@@ -122,7 +122,7 @@ if(!isset( $_SESSION['Account'] )){
 					'</td><td class="right">'.
 						$row['i_Desc'].
 					'</td><td class="right center">'.
-						$row['i_TicketCount'].
+						$row['i_TicketRemain'].'/'.$row['i_TicketCount'].
 					'</td><td class="right center">$'.
 						$row['i_TicketCost'].
 					'</td><td class="center right">'.
