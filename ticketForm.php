@@ -47,11 +47,7 @@ if(!isset( $_SESSION['Account'] )){
 		if( $max > 0 ){ 
 				
 	?>
-	<p>
-	<?php
-		echo ‘SellerID: ’ $_SESSION['Account']；
-	?>
-	</p>
+	
 		<p>How many tickets do you want to buy for this item.</p>
 		<p><label>Ticket: <input type="text" max="<?php echo $max;?>" min="1"	name="ticket"> Max:<?php echo $max;?></label></p>
 		<br>

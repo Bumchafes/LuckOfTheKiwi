@@ -370,7 +370,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 	}
 
 	/*------------------------------------------------
-	BALANCE
+	PENDING
 	------------------------------------------------*/
 	//GET
 	function AccGetPending($AccountID){
@@ -387,7 +387,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 				}else{ 
 					if( $row = mysqli_fetch_assoc($result) ){
 						
-						return $row["a_Balance"];
+						return $row["a_Pending"];
 						
 					}
 				
@@ -697,7 +697,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 		
 			if($connection){
 				//Todo.
-				$query = 'CALL itBuyTicket(\''.$buyersID.'\',\''.$itemName.'\',\''.$sellerID.'\',\''.$quantity.'\');';
+				$query = 'CALL tiBuyTicket(\''.$sellerID.'\',\''.$itemName.'\',\''.$buyersID.'\',\''.$quantity.'\');';
 				$result = mysqli_query($connection, $query);
 				echo $query;
 				@mysql_close();
@@ -776,7 +776,7 @@ function AccCreateAccount( $aUser,$aFName,$aLName,$aDoB,$aPass,$aEmail ){
 	GIVE FEEDBACK
 	------------------------------------------------*/
 
-	/*
+/*
 	function FbGiveFeedback($ReceiverID, $GiverID, $FeedbackDesc, $FeedbackRating){
 		
 		$connection = dbConnect();

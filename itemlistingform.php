@@ -9,7 +9,7 @@
 			{
 				?>
 				<META http-equiv="refresh" content="0;URL=loginForm.php">
-					<?php
+				    <?php
 			}
 		?>
 	</head> 
@@ -57,7 +57,14 @@
 				$ticketcount = $_POST["Cost"];
 				$name = $_POST["itemName"];
 				$desc = $_POST["Desc"];
-				$tag = $_POST["type"];
+				if( isset($_POST["type"]) )
+				{
+					$tag = $_POST["type"];
+				}
+				else
+				{
+					$tag = NULL;
+				}
 				$photo = $_POST["image"];
 				
 				include 'dbFunctions.php';

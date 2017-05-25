@@ -21,7 +21,7 @@ if( $purchase ){
 	echo $_POST['ownerID'].'<br>';
 	echo $_POST['itemName'].'<br>';
 	echo $_POST['ticket'].'<br>';
-	echo '<script type="text/javascript">'.'document.getElementById( \'subReturn\' ).submit();'.'</script>';
+	//echo '<script type="text/javascript">'.'document.getElementById( \'subReturn\' ).submit();'.'</script>';
 		
 		
 ?>

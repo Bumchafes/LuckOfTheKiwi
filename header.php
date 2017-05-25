@@ -17,11 +17,11 @@
 		echo '<title>Navigation Page</title>';
 	}
 	
-	echo '<link rel="stylesheet" type="text/css" href="style.css"/>';
+	echo '<link rel="stylesheet" type="text/css" href="style.css" />';
 	echo '</head>';
 	echo '<h1><i>The Lucky Kiwi</i><h1>';
 	
-	include 'dbFuctions.php';
+	include 'dbFunctions.php';
 	$balance = AccGetBalance( $_SESSION['Account'] );
 	$pending = AccGetPending( $_SESSION['Account'] );
 	$hotItems = getHotItems();
