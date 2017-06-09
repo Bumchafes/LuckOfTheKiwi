@@ -43,11 +43,16 @@ if(!isset( $_SESSION['Account'] )){
 	
 <form class="inputs" action ="ticketprocess.php" method = "post"  >
 	<?php 
+		echo "<p><b>".$itemName."</b></p>";
 		//Ask user to input the number of ticket they want to purchase
 		if( $max > 0 ){ 
 		
-		$photos = getPhotos($itemName);
-		echo $photos;
+		if($itemName == "Fruit Bursts"){
+		$photoFB = getPhotos("Fruit Bursts","1034");
+		echo "<img src=\"".$photoFB."\" height=\"350\" width=\"450\"> ";
+		}else{
+		echo "<img src=\"noimage.png\" height=\"350\" width=\"450\"> ";
+		}
 	?>
 	
 		<p>How many tickets do you want to buy for this item.</p>
