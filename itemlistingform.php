@@ -38,6 +38,7 @@
 				<input type="radio" name="type" value= "Art"> Art</input>
 				<input type="radio" name="type" value= "Movies & TV"> Movies & TV</input>
 				<br></br>
+			
 				Select image to upload:<input type="file" name="image" id="fileToUpload">
 				<input class = "button buttonHover" type="submit" value = "Submit"></input>
 				<input class = "button buttonHover" type="reset" value = "Reset"></input>
