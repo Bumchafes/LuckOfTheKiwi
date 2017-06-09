@@ -26,9 +26,8 @@
 	  </tr>
 	  <tr>
 	   <td align="left">Email:</td> <td align="right"><input required type='text' name='email'></td>
-	  </tr>
-	  
-	  </table>
+	  </tr> 
+	 </table>
 	<!--drop table for user to select month-'date of birth-->			
 	<p>DOB: <select required name="DOBMonth">
 		<option> - Month - </option>
