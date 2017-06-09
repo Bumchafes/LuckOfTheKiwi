@@ -45,7 +45,9 @@ if(!isset( $_SESSION['Account'] )){
 	<?php 
 		//Ask user to input the number of ticket they want to purchase
 		if( $max > 0 ){ 
-				
+		
+		$photos = getPhotos($itemName);
+		echo $photos;
 	?>
 	
 		<p>How many tickets do you want to buy for this item.</p>
