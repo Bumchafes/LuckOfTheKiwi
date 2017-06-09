@@ -5,19 +5,32 @@
 	<link rel = "stylesheet" href = "style.css">
 </head>
 	<h1><i>TheLuckyKiwi</i></h1>
-	<br><br><br>
 <body>
 <div>
-<p>username=alpha : password=abc</p>
 	<form class="inputs" action='registrationProcess.php' method='post'>
-	Username: <input required type='text' name='userName'><br>
-	Password: <input required type='password' name='password'><br>
-	Confirm Password: <input required type='password' name='cfmpassword'><br>
-	<p>First Name: <input required type='text' name='firstName'><br>
-	Last Name: <input required type='text' name='lastName'><br>
-	Email: <input required type='text' name='email'><br>
+	 <table>
+	  <tr>
+	   <td align="left">Username:</td> <td align="right"><input required type='text' name='userName'></td>
+	  </tr>
+	  <tr>
+	   <td align="left">Password:</td> <td align="right"><input required type='password' name='password'></td>
+	  </tr>
+	  <tr>
+	   <td align="left">Confirm Password:</td> <td align="right"><input required type='password' name='cfmpassword'></td>
+	  </tr>
+	  <tr>
+	   <td align="left"><p>First Name:</td> <td align="right"><input required type='text' name='firstName'></td>
+	  </tr>
+	  <tr>
+	   <td align="left">Last Name:</td> <td align="right"><input required type='text' name='lastName'></td>
+	  </tr>
+	  <tr>
+	   <td align="left">Email:</td> <td align="right"><input required type='text' name='email'></td>
+	  </tr>
+	  
+	  </table>
 	<!--drop table for user to select month-'date of birth-->			
-	DOB: <select required name="DOBMonth">
+	<p>DOB: <select required name="DOBMonth">
 		<option> - Month - </option>
 		<option value="01">January</option>
 		<option value="02">Febuary</option>
