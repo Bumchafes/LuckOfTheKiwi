@@ -10,7 +10,7 @@ if(!isset( $_SESSION['Account'] )){
 	<title>Ticket</title> 
 	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
-	<h1><i>TheLuckyKiwi</i></h1>
+	<h1><i>The<span style="color:#00E700">Lucky</span>Kiwi</i></h1>
 	<form action = "logoutProcess.php" method = "post">
 		<input type="hidden" name="page" id="hiddenField" value="index.php">
 		<p class="aLogins"><input class = "button buttonHover" type="submit" value="Logout"></p>
