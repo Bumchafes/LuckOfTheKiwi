@@ -4,7 +4,7 @@
 	<title>Lucky Kiwi Registration</title>
 	<link rel = "stylesheet" href = "style.css">
 </head>
-	<h1><i>TheLuckyKiwi</i></h1>
+	<h1><i>The<span style="color:#00E700">Lucky</span>Kiwi</i></h1>
 <body>
 <div>
 	<form class="inputs" action='registrationProcess.php' method='post'>
