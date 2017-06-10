@@ -54,7 +54,10 @@ if(!isset( $_SESSION['Account'] )){
 		echo "<img src=\"noimage.png\" height=\"350\" width=\"450\"> ";
 		}
 	?>
-	
+	    <p>Seller Details</p>
+	    <p>Username: <?php echo AccGetUsername($ownerID); ?></p>
+	    <p>Rating: <?php echo FbGetFeedback($ownerID); ?></p><br>
+	    
 		<p>How many tickets do you want to buy for this item.</p>
 		<p><label>Ticket: <input type="text" max="<?php echo $max;?>" min="1"	name="ticket"> Max:<?php echo $max;?></label></p>
 		<br>
