@@ -16,7 +16,7 @@ if(!isset( $_SESSION['Account'] )){
 	<!--stylesheet header-->
 	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
-	<h1><i>TheLuckyKiwi</i></h1>
+	<h1><i>The<span style="color:#00E700">Lucky</span>Kiwi</i></h1>
 	<?php
 	//check if user is logged in - else redirect to login page
 	if(!isset( $_SESSION['Account'])){
