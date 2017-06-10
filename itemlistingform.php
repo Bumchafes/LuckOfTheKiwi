@@ -2,19 +2,9 @@
 	<head>
 		<title> Lucky Kiwi </title> 
 		<link rel="stylesheet" type="text/css" href="style.css" />
-		<?php
-		//checks wether user is logged in - else redirect to the login page
-			session_start();
-			if(!isset( $_SESSION['Account'] ))
-			{
-				?>
-				<META http-equiv="refresh" content="0;URL=loginForm.php">
-				    <?php
-			}
-		?>
-		
+
 	</head> 
-<h1><i>TheLuckyKiwi</i></h1>
+<h1><i>The<span style="color:#00E700">Lucky</span>Kiwi</i></h1>
 <form action = "logoutProcess.php" method = "post">
 	<input type="hidden" name="page" id="hiddenField" value="index.php">
 	<p class="aLogins"><input class = "button buttonHover" type="submit" value="Logout"></p>
@@ -22,19 +12,22 @@
 <br>
 	<body> 
 	<div>
+	<form class="inputs" action = "itemlistingform.php" method = "post" ></p>
+		<div class="itemDetails">
 		<h2>Item Details</h2>
 		<p><i><span style="color:red">Enter the details about the item you want to list.</span></i></p>
-		<form class="inputs" action = "itemlistingform.php" method = "post" ></p>
-			<p>Item name: <input required type="text" name="itemName"></p>
+		
+			<p><br>Item Title: <br><input required type="text" name="itemName"></p>
 			
 			
-			<label>Item Description:</label>
+			<p><label>Item Description:</label>
 			<!--Allows seller to input a description of an item-->
-			<br><textarea required name="Desc" rows="8" cols="40"></textarea> 
+			<br><textarea required name="Desc" rows="8" cols="40"></textarea><br>
 			</p>
 
-			<p>Item city: <input required type="text" name="itemCity"></p>
-			
+			<p>Item city: <br><input required type="text" name="itemCity"></p>
+			<br>
+			<p>
 			Item Type:<br>
 			<input type="radio" name="type" value= "Clothing" > Clothing</input>
 			<input type="radio" name="type" value= "Gaming"> Gaming</input>
@@ -47,23 +40,24 @@
 			<input type="radio" name="type" value= "Art"> Art</input>
 			<input type="radio" name="type" value= "Movies & TV"> Movies & TV</input>
 			<br>
-			<br>
-			
+			</p>
+		</div>
+		<div class="itemDetails">	
 		<h2>Upload Image</h2>
 			<p><i><span style="color:red">Add an image of your item to your listing.</span></i></p>
-			<input type="file" name="image" id="fileToUpload"><br>
-			
+			<p><br><input type="file" name="image" id="fileToUpload"><br></p>
+		</div>	
 		
-	</div>
-		
+	
+		<div class="itemDetails">
 		<h2>Ticket Details</h2>
 	
 			<p><i><span style="color:red">Enter asking price for your item and the preferred cost per ticket?</span></i></p>
-			<label>Item Asking Price: $<input required type="text" name="totalPrice"></label>
-			<p><label>Preferred cost per ticket: $<input required type="text" name="totalTicket"></label>
+			<p><br><label>Item Asking Price: $<br><input required type="text" name="totalPrice"></label></p>
+			<p><label>Preferred cost per ticket: $<br><input required type="text" name="totalTicket"></label>
 			<p id="targetDiv"></p>
 			<p><input name="Cost" type="button" value="Calculate My Tickets" onClick="calculateTix(totalPrice.value, totalTicket.value)">
-	
+		</div>
 		<script>
 			function calculateTix(itemValue, ticketCount){
 				
@@ -102,7 +96,7 @@
 			<input id="itemValue" hidden type="text" value="test3" name="itemValue">
 		</p>
 		
-		<p>
+		<p class="submitlisting">
 		<input class = "button buttonHover" type="submit" value = "Submit"></input>
 			<input class = "button buttonHover" type="reset" value = "Reset"></input>
 			</br>
@@ -111,7 +105,7 @@
 			</br>
 		</p>	
 		</form>
-		
+		</div>
 		<?php
 		//IF THE ITEM DETAILS ARE POSTED THEN CREATE ITEM WITH THEM
 			if( isset( $_POST['itemCity'] )){
