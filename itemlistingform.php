@@ -1,3 +1,14 @@
+<!--this is the first page displayed when 'luckykiwi.us.to/luckykiwi' is acccessed-->
+<?php
+//starts session for this page
+session_start();
+//checks to verify wether session variable has been set
+if(!isset( $_SESSION['Account'] )){
+	?>
+	<META http-equiv="refresh" content="0;URL=loginForm.php">
+	<?php
+}
+?> 
 <html>
 	<head>
 		<title> Lucky Kiwi </title> 
