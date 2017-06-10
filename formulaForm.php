@@ -1,7 +1,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 </head>
-<h1>LuckyKiwi</h1>
+<h1><i>The<span style="color:#00E700">Lucky</span>Kiwi</i></h1>
 <body>
 <div>
 <form action ="formulaProcess.php" method= "post">
