@@ -88,10 +88,13 @@ if(!isset( $_SESSION['Account'] )){
 			?>
 		</table>
 		<br>
-		<form action = "searchProcess.php" method = "post">
+		<form>
 			<p>
-				<input class = "button buttonHover" type="submit" value="Search"> 
-				<input type="text/field" name="searchList" id="hiddenField" >
+        	<br>Search Item: <input  type='text' id = 'itemSearch' name='userinput'>
+        	
+        	<input class="button buttonHover" onclick = "assign()"  value = "Search"/></br>
+        	
+        	<p id="message"></p>
 			</p>
 		</form>
 		<br>
@@ -138,5 +141,24 @@ if(!isset( $_SESSION['Account'] )){
 		 } ?>
 	</div>
 	</div>
+	<script>
+	    function assign()
+	    {
+    		var xmlhttp = new XMLHttpRequest();	
+    		var userI = document.getElementById("itemSearch").value;
+    		
+    		xmlhttp.onreadystatechange = function() 
+    		{
+    			if (this.readyState == 4 && this.status == 200) 
+    			{
+    				document.getElementById("message").innerHTML = this.responseText;
+    			}
+    		}
+    		xmlhttp.open("GET", "searchProcess.php?userI=" + userI, true);
+    		xmlhttp.send();
+    		
+    		return false;	
+	    }
+	</script>
 </body>
 </html>
