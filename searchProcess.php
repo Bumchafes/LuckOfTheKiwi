@@ -1,41 +1,57 @@
 <?php
 session_start();
-
 		include 'dbFunctions.php';
 		$connection = dbConnect();
-		$searchResult = ($_POST['searchList']);
-		$query = "SELECT tag_ID from tags where tag_Title like ".$searchResult.";";  // This process searches through the database for all
-		$searchRow = [];	// entries that are like the input searched by the user 
-		$ciNameRow = [];
-		$result = mysqli_query( $connection , $query ); //then searches through the table tags for all tag_ids where the title is similar
-		if($result){
-			while($row = mysql_fetch_assoc($result)){ // this then goes through item_tags and finds the item names that have the 
-				$searchRow[] = $row;             // same tag_id -
-			}					// then it finds the entries of that code and prints it to the mainscreen.
-			foreach( $searchRow as $row ){              
-				$query = "SELECT i_Name FROM item_tags WHERE tag_ID = ".$searchRow[i].";";
-				$itemsresult = mysqli_query($dbConnect, $query);
-				while ($row = mysql_fetch_assoc($itemsresult)) {
-					array_push($ciNameRow, $row["i_Name"]);
-				}
+	    $searchResult = $_GET["userI"]; 
+	
+	if (!$connection) 
+	{
+		echo "<p>Database connection failure</p>";
+	} 
+	else 
+	{
+		// Upon successful connection
+		
+		$query = "select * from items where i_Name like '$searchResult%'";
+			
+		// executes the query and store result into the result pointer
+		$result = mysqli_query($connection, $query);
+		
+		// checks if the execuion was successful
+		if(!$result) {
+			echo "<p>Something is wrong with ",	$query, "</p>";
+		} else {
+			// Display the retrieved records
+			echo "<table border=\"1\">";
+			echo "<tr>\n"
+				 ."<th scope=\"col\">Name #</th>\n"
+			     ."<th scope=\"col\">Description</th>\n"
+				 ."<th scope=\"col\">Tickets left</th>\n"
+				 ."<th scope=\"col\">Ticket Price</th>\n"
+				 ."<th scope=\"col\">Purchase</th>\n"
+				 ."</tr>\n";
+			// retrieve current record pointed by the result pointer
+			while ($row = mysqli_fetch_assoc($result)){
+				echo "<tr>";
+				echo "<td>",$row["i_Name"],"</td>";
+				echo "<td>",$row["i_Desc"],"</td>";
+				echo "<td>",$row["i_TicketRemain"],"</td>";
+				echo "<td>",$row["i_TicketCost"],"</td>";
+			    echo "<td>".
+						'<form action = "ticketForm.php" method = "post">'.
+							'<input type="hidden" name="ownerID" id="hiddenField" value="'.$row['a_ID'].'">'.
+							'<input type="hidden" name="itemName" id="hiddenField" value="'.$row['i_Name'].'">'.
+							'<input class = "button buttonHover" type="submit" value="Buy">'.
+						'</form>'.
+					'</td>';
+				echo "</tr>";
 			}
-			$query = "SELECT * FROM items WHERE ";
-			$count = 0;
-			foreach( $ciNameRow as $iNames ){
-				if( $count != 0 ){
-					$query .= " OR ";
-				}
-				$query .= "i_Name = ".$iNames;
-				$count++;
-			}
-			$query .= " LIMIT 20;";
-			$searchResult = mysqli_query( $connection , $query );
-		}else{
-			$searchResult = 0;
-		}
-
-		echo '<form id="searchResult" action="index.php" method="POST">';
-		echo '<input type="hidden" name="searchResult" value="'.$searchResult.'">';
-		echo '</form>';
-		echo '<script type="text/javascript">'.'document.getElementById( \'searchResult\' ).submit();'.'</script>';
+			echo "</table>";
+			// Frees up the memory, after using the result pointer
+			mysqli_free_result($result);
+		} // if successful query operation
+		
+		// close the database connection
+		mysqli_close($connection);
+	}
 ?>
