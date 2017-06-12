@@ -12,8 +12,7 @@ if(!isset( $_SESSION['Account'] )){
 <html>
 	<head>
 		<title> Lucky Kiwi </title> 
-		<link rel="stylesheet" type="text/css" href="style.css" />
-
+		<link rel="stylesheet" type="text/css" href="style.css" />		
 	</head> 
 <h1><i>The<span style="color:#00E700">Lucky</span>Kiwi</i></h1>
 <form action = "logoutProcess.php" method = "post">
@@ -24,7 +23,7 @@ if(!isset( $_SESSION['Account'] )){
 	<body> 
 	<div>
 	<form class="inputs" action = "itemlistingform.php" method = "post" ></p>
-		<div class="itemDetails">
+		<div class="inputs">
 		<h2>Item Details</h2>
 		<p><i><span style="color:red">Enter the details about the item you want to list.</span></i></p>
 		
@@ -53,14 +52,14 @@ if(!isset( $_SESSION['Account'] )){
 			<br>
 			</p>
 		</div>
-		<div class="itemDetails">	
+		<div class="inputs">	
 		<h2>Upload Image</h2>
 			<p><i><span style="color:red">Add an image of your item to your listing.</span></i></p>
 			<p><br><input type="file" name="image" id="fileToUpload"><br></p>
 		</div>	
 		
 	
-		<div class="itemDetails">
+		<div class="inputs">
 		<h2>Ticket Details</h2>
 	
 			<p><i><span style="color:red">Enter asking price for your item and the preferred cost per ticket?</span></i></p>
@@ -146,3 +145,4 @@ if(!isset( $_SESSION['Account'] )){
 		
 	</body>
 </html>
+
