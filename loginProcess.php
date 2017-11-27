@@ -5,7 +5,7 @@
 		include 'dbFunctions.php';		
 		//retrieve input from "loginform" to be used
 		$userName=$_POST["user_name"];
-		$pwd=$_POST["pswd"];
+		$pwd=$_POST["pswd"];asdf
 	}
 	//'loginProcess()' function hashes the password and verifies username against password
 	function loginProcess( $userName , $pwd ){
