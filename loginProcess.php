@@ -10,6 +10,7 @@
 	//'loginProcess()' function hashes the password and verifies username against password
 	function loginProcess( $userName , $pwd ){
 		//Hashing password
+		// test
 		$pwd=md5($pwd);
 		if(!verifyLogin($userName , $pwd))
 		{
