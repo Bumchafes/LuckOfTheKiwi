@@ -17,6 +17,8 @@ services:
   
   maintenance:
     build: ./maintenance/
+    ports:
+    - 5019:80
   
   pubKey:
     build: ./pubKey/
