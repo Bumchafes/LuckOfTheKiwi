@@ -9,6 +9,8 @@ services:
   
   createlottery:
     build: ./createlottery/
+    ports:
+     - 5017:80
   
   findlottery:
     build: ./findlottery/
@@ -18,9 +20,12 @@ services:
   
   pubKey:
     build: ./pubKey/
+    ports:
+     - 5020:80
   
   pvtkey:
     build: ./pvtkey/
+     - 5021:80
   
   readbc:
     build: ./readbc/
@@ -30,6 +35,8 @@ services:
   
   winningticket:
     build: ./winningticket/
+    ports:
+     - 5024:80
   
   writebc:
     build: ./writebc/
