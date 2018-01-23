@@ -1,1 +1,1 @@
-﻿Source files can be stored here (smart contracts).
+﻿Source Files can be stored here (smart contracts).
