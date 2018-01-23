@@ -16,6 +16,16 @@ int connect_maintenance() {
   if (connection_status == -1){
     printf('Shit's fucked up, doc');
   }
+           
+  // recieve data from the server
+  char server_response[256];
+  recv(network_socket, &server_response, sizeof(server_response), 0);
+  
+  // print out the server's response
+  printf("The server sent out the data: %s\n", server_response);
+           
+  // and then close the socket
+  close(sock);
   
   return 0;
 }
