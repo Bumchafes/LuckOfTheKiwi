@@ -20,13 +20,14 @@ services:
     ports:
     - 5019:80
   
-  pubKey:
+  pubkey:
     build: ./pubKey/
     ports:
      - 5020:80
   
   pvtkey:
     build: ./pvtkey/
+    ports:
      - 5021:80
   
   readbc:
