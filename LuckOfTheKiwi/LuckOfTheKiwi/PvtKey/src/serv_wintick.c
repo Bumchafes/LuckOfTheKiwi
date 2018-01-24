@@ -11,8 +11,8 @@ int serv_wintick() {
  // define the server address
  struct sockaddr_in server_address;
  server_address.sin_family = AF_INET;
- server_address.sin_port = htons(9002);
- server_address.sin_addr.s_s_addr = INADDR_ANY;
+ server_address.sin_port = htons(5024);
+ server_address.sin_addr.s_s_addr = inet_addr("winningticket");
  
  //  bind the socket to our specified IP and Port
  bind(server_socket, (struct sockaddr*) &server_address, sizeof(server_address));
