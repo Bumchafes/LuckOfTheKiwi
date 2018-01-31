@@ -6,6 +6,8 @@ services:
     
   buyticket:
     build: ./buyticket/
+    volumes:
+     - ./src:/usr/src/myapp
   
   createlottery:
     build: ./createlottery/
