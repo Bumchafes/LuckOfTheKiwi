@@ -1,4 +1,5 @@
 version: '3'
+# Services = Docker Containers which will run.
 services: 
 
   audit:
@@ -6,11 +7,13 @@ services:
     
   buyticket:
     build: ./buyticket/
+    # Copy files from ./src into /usr/src/myapp in the Container.
     volumes:
      - ./src:/usr/src/myapp
   
   createlottery:
     build: ./createlottery/
+    # Ports that are open NetworkPort:ContainerPort
     ports:
      - 5017:80
   
@@ -19,16 +22,19 @@ services:
   
   maintenance:
     build: ./maintenance/
+    # Ports that are open NetworkPort:ContainerPort
     ports:
     - 5019:80
   
   pubkey:
     build: ./pubKey/
+    # Ports that are open NetworkPort:ContainerPort
     ports:
      - 5020:80
   
   pvtkey:
     build: ./pvtkey/
+    # Ports that are open NetworkPort:ContainerPort
     ports:
      - 5021:80
   
@@ -40,6 +46,7 @@ services:
   
   winningticket:
     build: ./winningticket/
+    # Ports that are open NetworkPort:ContainerPort
     ports:
      - 5024:80
   
