@@ -14,7 +14,7 @@
 
 #MANAGING CONTAINERS
     # Stop all containers - Only running ones will stop.
-    docker stop 'docker ps -aq'
+    docker stop `docker ps -aq`
 
     # Remove all containers - Only stopped ones can be removed.
     docker rm `docker ps -aq`
