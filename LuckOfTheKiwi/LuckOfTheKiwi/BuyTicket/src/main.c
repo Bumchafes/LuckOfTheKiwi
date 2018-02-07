@@ -6,5 +6,10 @@
 
 int main() {
  
+  for(;;){
+    sleep(3);
+    printf("Sacrificing Psykers...");
+  }
+
   return 0;
 }

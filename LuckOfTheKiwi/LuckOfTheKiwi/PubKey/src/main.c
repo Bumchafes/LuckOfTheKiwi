@@ -6,5 +6,9 @@
 
 int main() {
  
+  while(true){
+    sleep(3);
+  }
+
   return 0;
 }
