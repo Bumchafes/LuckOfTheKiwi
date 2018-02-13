@@ -7,4 +7,4 @@ WORKDIR /usr/src/myapp
 # Compiles the C program into an executable.
 RUN set -x gcc -o myapp main.c
 # When container starts up, run the executable inside /myapp.
-CMD ["./myapp"]
+CMD [".\myapp"]
