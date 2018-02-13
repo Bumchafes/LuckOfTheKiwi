@@ -1,15 +1,20 @@
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 
+#include "btlib.h"
+
 int main() {
  
   for(;;){
-    sleep(3);
-    printf("Sacrificing Psykers...");
+    connWBC("message");
+    sleep(60);
   }
 
   return 0;
 }
+
