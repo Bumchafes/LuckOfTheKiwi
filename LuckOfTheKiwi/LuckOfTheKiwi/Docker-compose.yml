@@ -49,6 +49,12 @@ services:
     # Ports that are open NetworkPort:ContainerPort
     ports:
      - 5024:80
+
+  server:
+    build: ./server/
+    # Ports that are open NetworkPort:ContainerPort
+    ports:
+     - 5025:80
   
   writebc:
     build: ./writebc/
