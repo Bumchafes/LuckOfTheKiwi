@@ -5,6 +5,8 @@ var io = require('socket.io').listen(server);
 user = [];
 connections = [];
 
+const morgan = require("morgan");
+
 server.listen(process.env.PORT || 3000);
 console.log('socket.io server running on port 3000 ...');
 
@@ -12,6 +14,8 @@ app.get('/', function(req, res){
     res.sendFile(process.cwd() + '/index.html');
    
 });
+
+app.use(morgan("dev"));
 
 io.sockets.on('connection', function(socket){
     // Openning
@@ -27,6 +31,7 @@ io.sockets.on('connection', function(socket){
 
     // send message
     socket.on('Send Message', function(data){
+        console.log(`wtretrt${data}`);
         io.sockets.emit('New Message',{msg:data});
     });
     // private message

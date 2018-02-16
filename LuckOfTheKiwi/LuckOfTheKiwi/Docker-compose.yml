@@ -2,60 +2,66 @@ version: '3'
 # Services = Docker Containers which will run.
 services: 
 
-  audit:
-    build: ./audit/
+#  audit:
+ #  build: ./audit/
     
-  buyticket:
-    build: ./buyticket/
-    # Copy files from ./src into /usr/src/myapp in the Container.
-    volumes:
-     - ./src:/usr/src/myapp
+#  buyticket:
+#    build: ./buyticket/
+#    # Copy files from ./src into /usr/src/myapp in the Container.
+#    volumes:
+ #    - ./src:/usr/src/myapp
   
-  createlottery:
-    build: ./createlottery/
+ # createlottery:
+#    build: ./createlottery/
     # Ports that are open NetworkPort:ContainerPort
-    ports:
-     - 5017:80
+#   ports:
+ #    - 5017:80
   
-  findlottery:
-    build: ./findlottery/
+ # findlottery:
+  #  build: ./findlottery/
   
-  maintenance:
-    build: ./maintenance/
+ # maintenance:
+ #   build: ./maintenance/
+ #   # Ports that are open NetworkPort:ContainerPort
+ #   ports:
+ #   - 5019:80
+  
+#  pubkey:
+#    build: ./pubKey/
+#    # Ports that are open NetworkPort:ContainerPort
+#    ports:
+ #    - 5020:80
+  
+#  pvtkey:
+ #   build: ./pvtkey/
+  #  # Ports that are open NetworkPort:ContainerPort
+ #   ports:
+ #    - 5021:80
+  
+ # readbc:
+ #   build: ./readbc/
+  
+ # userinterface:
+  #  build: ./userinterface/
+  
+#  winningticket:
+#    build: ./winningticket/
     # Ports that are open NetworkPort:ContainerPort
-    ports:
-    - 5019:80
-  
-  pubkey:
-    build: ./pubKey/
-    # Ports that are open NetworkPort:ContainerPort
-    ports:
-     - 5020:80
-  
-  pvtkey:
-    build: ./pvtkey/
-    # Ports that are open NetworkPort:ContainerPort
-    ports:
-     - 5021:80
-  
-  readbc:
-    build: ./readbc/
-  
-  userinterface:
-    build: ./userinterface/
-  
-  winningticket:
-    build: ./winningticket/
-    # Ports that are open NetworkPort:ContainerPort
-    ports:
-     - 5024:80
+ #   ports:
+#     - 5024:80
 
   server:
     build: ./server/
     # Ports that are open NetworkPort:ContainerPort
     ports:
-     - 5025:80
+     - 5025:3000
+
+  client:
+    build: ./client/
+    # Ports that are open NetworkPort:ContainerPort
+    ports:
+     - 5026:3000
   
-  writebc:
-    build: ./writebc/
+#  writebc:
+#    build: ./writebc/
   
