@@ -54,13 +54,13 @@ services:
     build: ./server/
     # Ports that are open NetworkPort:ContainerPort
     ports:
-     - 5025:3000
+     - 3000:3000
 
   client:
     build: ./client/
     # Ports that are open NetworkPort:ContainerPort
     ports:
-     - 5026:3000
+     - 3001:3001
   
 #  writebc:
 #    build: ./writebc/
