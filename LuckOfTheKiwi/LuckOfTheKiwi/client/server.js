@@ -6,9 +6,7 @@ var io = require("socket.io-client");
 
 function connect()
 {
-    console.log("Connceting to client...");
     var socket = io.connect("http://localhost:3000");
-    console.log("client connected...");
     socket.emit('Send Message');
     socket.emit('flag');
 }
