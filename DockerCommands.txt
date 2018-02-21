@@ -1,0 +1,39 @@
+#COMPOSE
+    # Start up containers outlined in the Docker-compose file.
+    docker-compose up
+
+    # Force docker to re-build the image files for the containers - build Dockerfiles.
+    docker-compose build
+
+#SHOWING CONTAINERS
+    # List all containers running/stopped
+    docker ps -a
+
+    # List all containers running/stopped - ID's only.
+    docker ps -aq
+
+#MANAGING CONTAINERS
+    # Stop all containers - Only running ones will stop.
+    docker stop `docker ps -aq`
+
+    # Remove all containers - Only stopped ones can be removed.
+    docker rm `docker ps -aq`
+
+#ENTERING RUNNING CONTAINER
+    # Enter Bash
+    docker exec -it [containter-id] bash
+
+#RUNNING FROM DOCKERFILE
+    # Build Dockerfile
+    docker build -t [name] .
+
+    # Run Dockerfile Build
+    docker run -it [name]
+
+#DOCKER IMAGES 
+    # List all docker images
+    docker images
+
+    # Clear all docker images
+    docker rmi `docker images -aq`
+
