@@ -4,14 +4,16 @@ var server = require('http').createServer(app);
 var io = require("socket.io-client");
 
 
-function connect(){
+function connect()
+{
+    console.log("Connceting to client...");
     var socket = io.connect("http://localhost:3000");
-    socket.emit("Send Message", "hello world");
-    console.log('im in...');
-
+    console.log("client connected...");
+    socket.emit('Send Message');
+    socket.emit('flag');
 }
 connect();
-//socket.emit("Send Message","Hello World");
+
 server.listen(process.env.PORT || 3001);
 console.log('socket.io client running on port 3001 ...');
 

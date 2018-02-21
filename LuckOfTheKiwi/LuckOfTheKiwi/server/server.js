@@ -10,15 +10,11 @@ var morgan = require("morgan");
 server.listen(process.env.PORT || 3000);
 console.log('socket.io server running on port 3000 ...');
 
-
-
-app.use(morgan("dev"));
-
 io.sockets.on('connection', function(socket){
     // Openning
-    console.log('CONECTED ...');
+    console.log('CONNECTED ...');
     connections.push(socket);
-    console.log('ConnectedL %s sockets connected', connections.length);
+    console.log('%s sockets connected', connections.length);
 
     // Disconnect
     socket.on('disconnect', function(data){
@@ -43,3 +39,10 @@ io.sockets.on('connection', function(socket){
         io.sockets.emit('New Message', {msg:'stars and stripes'});
     });
 });
+
+/*app.get('/', function(req, res){
+    res.sendFile(process.cwd() + '/index.html');
+   
+});
+
+app.use(morgan("dev"));*/
