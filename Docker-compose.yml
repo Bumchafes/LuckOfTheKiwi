@@ -50,18 +50,33 @@ services:
  #   ports:
 #     - 5024:80
 
+
   socketserver:
     build: ./socketserver/
     # Ports that are open NetworkPort:ContainerPort
     ports:
      - 3000:3000
+     
+  blockchain:
+    build: ./blockchain/
+    # Ports that are open NetworkPort:ContainerPort
+    ports:
+     - 3001:3001
+  
+  lottery:
+    build: ./lottery/
+    # Ports that are open NetworkPort:ContainerPort
+    ports:
+     - 3002:3002
 
   userinterface:
     build: ./userinterface/
     # Ports that are open NetworkPort:ContainerPort
     ports:
-     - 3001:3001
-  
+     - 3003:3003
+
+
+
 #  writebc:
 #    build: ./writebc/
   
