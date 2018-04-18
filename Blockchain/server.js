@@ -4,15 +4,17 @@ var server = require('http').createServer(app);
 var io = require("socket.io-client");
 
 
-function connect()
-{
-    var socket = io.connect("http://localhost:3000");
-    socket.emit('Send Message Blockchain');
-}
-connect();
 
-server.listen(process.env.PORT || 3001);
-console.log('socket.io Lottery running on port 3001 ...');
+server.listen(process.env.PORT || 3002);
+console.log('socket.io Lottery running on port 3002 ...');
+socket = io.connect("http://localhost:3000");
+
+socket.on('connect', function(){
+    console.log('connect');
+    console.log(socket.connected);
+    socket.emit('Send Message Blockchain');
+    console.log(socket.connected);
+});
 
 
 

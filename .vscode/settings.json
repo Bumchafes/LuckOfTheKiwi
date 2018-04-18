@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "unistd.h": "c",
+        "socket.h": "c",
+        "types.h": "c",
+        "xiosbase": "c",
+        "io.h": "c"
+    }
+}
