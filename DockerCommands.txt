@@ -37,3 +37,4 @@
     # Clear all docker images
     docker rmi `docker images -aq`
 
+things
