@@ -14,10 +14,12 @@
 
 #MANAGING CONTAINERS
     # Stop all containers - Only running ones will stop.
-    docker stop `docker ps -aq`
+    docker stop `docker ps -aq`    
+    docker stop $(docker ps -aq)
 
     # Remove all containers - Only stopped ones can be removed.
     docker rm `docker ps -aq`
+    docker rm $(docker ps -aq)
 
 #ENTERING RUNNING CONTAINER
     # Enter Bash
@@ -37,4 +39,70 @@
     # Clear all docker images
     docker rmi `docker images -aq`
 
-things
+    # Save docker image to a file
+    docker save --output [directory+name] [imagename]
+    example: docker save --output E:\saved.tar privatenet
+
+    # Load docker image file
+    docker load --input [directory+name]
+
+--tx-attr={"data":"stuffuse","usage":"withthings"}
+
+ATzvqByE2Jnair9uLPQvJVsXvmbS1HNCfF - tstwall1
+ANviGv8FmLkn39kQ9XZw8vCYkQsMjw6ooo - demowallet
+AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y - neo-privnet
+
+python3 prompt.py
+{
+quit
+help
+block {index/hash} (tx)
+header {index/hash}
+tx {hash}
+asset {assetId}
+asset search {query}
+contract {contract hash}
+contract search {query}
+notifications {block_number or address}
+mem
+nodes
+state
+config debug {on/off}
+config sc-events {on/off}
+build {path/to/file.py} (test {params} {returntype} {needs_storage} {needs_dynamic_invoke} {test_params})
+load_run {path/to/file.avm} (test {params} {returntype} {needs_storage} {needs_dynamic_invoke} {test_params})
+import wif {wif}
+import nep2 {nep2_encrypted_key}
+import contract {path/to/file.avm} {params} {returntype} {needs_storage} {needs_dynamic_invoke}
+import contract_addr {contract_hash} {pubkey}
+import watch_addr {address}
+import token {token_contract_hash}
+export wif {address}
+export nep2 {address}
+open wallet {path}
+create wallet {path}
+wallet {verbose}
+wallet claim
+wallet migrate
+wallet rebuild {start block}
+wallet delete_addr {addr}
+wallet alias {addr} {title}
+wallet tkn_send {token symbol} {address_from} {address to} {amount}
+wallet tkn_send_from {token symbol} {address_from} {address to} {amount}
+wallet tkn_approve {token symbol} {address_from} {address to} {amount}
+wallet tkn_allowance {token symbol} {address_from} {address to}
+wallet tkn_mint {token symbol} {mint_to_addr} (--attach-neo={amount}, --attach-gas={amount})
+wallet unspent
+wallet close
+withdraw_request {asset_name} {contract_hash} {to_addr} {amount}
+withdraw holds # lists all current holds
+withdraw completed # lists completed holds eligible for cleanup
+withdraw cancel # cancels current holds
+withdraw cleanup # cleans up completed holds
+withdraw # withdraws the first hold availabe
+withdraw all # withdraw all holds available
+send {assetId or name} {address} {amount} (--from-addr={addr})(--tx-attr={data})
+sign {transaction in JSON format}
+testinvoke {contract hash} {params} (--attach-neo={amount}, --attach-gas={amount})
+debugstorage {on/off/reset}
+}0x60ad7aebdae37f1cad7a15b841363b5a7da9fd36bf689cfde75c26c0fa085b64
