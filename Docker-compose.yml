@@ -49,7 +49,12 @@ services:
     # Ports that are open NetworkPort:ContainerPort
  #   ports:
 #     - 5024:80
-
+  api:
+    container_name: api
+    build: ./API/
+    # Ports that are open NetworkPort:ContainerPort
+    ports:
+     - '5006:3000'
 
   socketserver:
     container_name: socketserver

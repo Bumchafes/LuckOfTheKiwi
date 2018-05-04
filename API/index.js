@@ -1,6 +1,6 @@
-var axpress = require('express');
+var express = require('express');
 var jwt = require('jsonwebtoken');
-const app = express();
+var app = express();
 
 
 //localhost:3000/api
