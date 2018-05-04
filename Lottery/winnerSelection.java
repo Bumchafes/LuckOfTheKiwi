@@ -22,10 +22,7 @@ public class winnerSelection
                         rngNumber += (rngNumber * ticketNumber / 3);
                         rngNumber += (rngNumber * ticketNumber / 4);
                         rngNumber += (rngNumber * ticketNumber / 5);
-                        // ticketsSold[0][0] = ticketNumber;
-                        // ticketsSold[0][1] = rngNumber;
                         ticketUniqeID.put(ticketNumber, rngNumber);
-                        // System.out.println(Arrays.deepToString(ticketsSold));
                         ticketNumber += 1;                         
                     }
              }
