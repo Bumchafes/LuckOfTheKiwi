@@ -51,6 +51,6 @@ public class winnerSelection
         System.out.print(Collections.singletonList(ticketUniqeID.keySet())); 
         System.out.println(" Public Key: "+ Collections.singletonList(ticketUniqeID.values()));
         System.out.println("");
-        System.out.println("Congratulations!");
+        System.out.println("Congratulations!!");
     }
 }

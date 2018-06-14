@@ -64,6 +64,21 @@ app.get('/api/rpctrigger', checkToken, function(req, res){
     });
 });
 
+app.get('/api/audit', checkToken, function(req, res){
+    jwt.verify(req.token, 'my_secret_key', function(err, data){
+            if(err){
+              res.sendStatus(403);
+            }
+            else{
+                makeCallAudit();
+                res.json({
+                text: 'this is an Audit',
+                data: data
+            });
+        }
+    });
+});
+
 //checkToken function
 function checkToken(req, res, next){
     const bearerHeader = req.headers["authorization"];
@@ -81,8 +96,7 @@ function checkToken(req, res, next){
 
    
 function makeCall(){
-      console.log("inside function");
-      client.call(
+        client.call(
           {
             "jsonrpc": "2.0",
             "method": "invoke",
@@ -93,11 +107,11 @@ function makeCall(){
                 },
                 {
                 "type":"String",
-                "value": "ripadamwest"
+                "value": "Customer265"
                 },
                 {
                 "type":"String",
-                "value": "42"
+                "value": "1"
                 }
                 ]
             ],
@@ -109,9 +123,42 @@ function makeCall(){
             else { console.log("sever said: " + JSON.stringify(res)); }
           }
         );
-        console.log("After call");
+        
       
   }
+
+  function makeCallAudit(){
+    
+    client.call(
+        {
+          "jsonrpc": "2.0",
+          "method": "invoke",
+          "params": ["f06fe9c09df4b80656779a1225ce33acc21add65",[
+              {
+              "type": "String",
+              "value": "buy"
+              },
+              {
+              "type":"String",
+              "value": "Auditor Access"
+              },
+              {
+              "type":"String",
+              "value": "1"
+              }
+              ]
+          ],
+          "id": 1
+      },
+        function (err, res) {
+          // Did it all work ?
+          if (err) { console.log("recieved error " + err); }
+          else { console.log("sever said: " + JSON.stringify(res)); }
+        }
+      );
+      
+    
+}
 
 
 app.listen(3000, function(){
